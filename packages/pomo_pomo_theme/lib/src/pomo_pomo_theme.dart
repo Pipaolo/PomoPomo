@@ -32,6 +32,11 @@ class PomoPomoTheme {
       );
     }
     return customTheme.copyWith(
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size(64, 48),
+        ),
+      ),
       textTheme: GoogleFonts.interTextTheme(
         customTheme.textTheme,
       ),

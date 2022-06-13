@@ -7,7 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:go_router/go_router.dart';
 import 'package:pomo_pomo/l10n/l10n.dart';
 import 'package:pomo_pomo/router/app_router.dart';
 
@@ -18,10 +17,7 @@ class App extends StatelessWidget {
   }) : _theme = theme;
 
   final ThemeData _theme;
-  final _router = GoRouter(
-    routes: $appRoutes,
-    initialLocation: '/splash',
-  );
+  final _router = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +28,8 @@ class App extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      routerDelegate: _router.routerDelegate,
-      routeInformationParser: _router.routeInformationParser,
+      routerDelegate: _router.delegate(),
+      routeInformationParser: _router.defaultRouteParser(),
     );
   }
 }
