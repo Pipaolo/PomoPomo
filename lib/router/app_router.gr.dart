@@ -21,70 +21,65 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<SplashPage>(
           routeData: routeData, child: WrappedRoute(child: const SplashPage()));
     },
+    HomeRoute.name: (routeData) {
+      return MaterialPageX<HomePage>(
+          routeData: routeData, child: WrappedRoute(child: const HomePage()));
+    },
     PomodoroTimerRoute.name: (routeData) {
       return MaterialPageX<PomodoroTimerPage>(
-          routeData: routeData,
-          child: WrappedRoute(child: const PomodoroTimerPage()));
+          routeData: routeData, child: const PomodoroTimerPage());
     },
     PomodoroTimerSettingsRoute.name: (routeData) {
-      final args = routeData.argsAs<PomodoroTimerSettingsRouteArgs>();
       return MaterialPageX<PomodoroTimerSettingsPage>(
-          routeData: routeData,
-          child: WrappedRoute(
-              child: PomodoroTimerSettingsPage(
-                  key: args.key, pomodoroTimerBloc: args.pomodoroTimerBloc)));
+          routeData: routeData, child: const PomodoroTimerSettingsPage());
     }
   };
 
   @override
   List<RouteConfig> get routes => [
-        RouteConfig(SplashRoute.name, path: '/'),
-        RouteConfig(PomodoroTimerRoute.name, path: '/pomodoro-timer'),
-        RouteConfig(PomodoroTimerSettingsRoute.name, path: '/settings')
+        RouteConfig(SplashRoute.name, path: '/splash'),
+        RouteConfig(HomeRoute.name, path: '/', children: [
+          RouteConfig(PomodoroTimerRoute.name,
+              path: 'pomodoro-timer',
+              parent: HomeRoute.name,
+              usesPathAsKey: true),
+          RouteConfig(PomodoroTimerSettingsRoute.name,
+              path: 'settings', parent: HomeRoute.name, usesPathAsKey: true)
+        ])
       ];
 }
 
 /// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute() : super(SplashRoute.name, path: '/splash');
 
   static const String name = 'SplashRoute';
+}
+
+/// generated route for
+/// [HomePage]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
+      : super(HomeRoute.name, path: '/', initialChildren: children);
+
+  static const String name = 'HomeRoute';
 }
 
 /// generated route for
 /// [PomodoroTimerPage]
 class PomodoroTimerRoute extends PageRouteInfo<void> {
   const PomodoroTimerRoute()
-      : super(PomodoroTimerRoute.name, path: '/pomodoro-timer');
+      : super(PomodoroTimerRoute.name, path: 'pomodoro-timer');
 
   static const String name = 'PomodoroTimerRoute';
 }
 
 /// generated route for
 /// [PomodoroTimerSettingsPage]
-class PomodoroTimerSettingsRoute
-    extends PageRouteInfo<PomodoroTimerSettingsRouteArgs> {
-  PomodoroTimerSettingsRoute(
-      {Key? key, required PomodoroTimerBloc pomodoroTimerBloc})
-      : super(PomodoroTimerSettingsRoute.name,
-            path: '/settings',
-            args: PomodoroTimerSettingsRouteArgs(
-                key: key, pomodoroTimerBloc: pomodoroTimerBloc));
+class PomodoroTimerSettingsRoute extends PageRouteInfo<void> {
+  const PomodoroTimerSettingsRoute()
+      : super(PomodoroTimerSettingsRoute.name, path: 'settings');
 
   static const String name = 'PomodoroTimerSettingsRoute';
-}
-
-class PomodoroTimerSettingsRouteArgs {
-  const PomodoroTimerSettingsRouteArgs(
-      {this.key, required this.pomodoroTimerBloc});
-
-  final Key? key;
-
-  final PomodoroTimerBloc pomodoroTimerBloc;
-
-  @override
-  String toString() {
-    return 'PomodoroTimerSettingsRouteArgs{key: $key, pomodoroTimerBloc: $pomodoroTimerBloc}';
-  }
 }

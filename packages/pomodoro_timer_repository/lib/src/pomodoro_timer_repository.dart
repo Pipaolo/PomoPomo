@@ -3,5 +3,5 @@
 /// {@endtemplate}
 class PomodoroTimerRepository {
   /// {@macro pomodoro_timer_repository}
-  const PomodoroTimerRepository();
+  PomodoroTimerRepository();
 }

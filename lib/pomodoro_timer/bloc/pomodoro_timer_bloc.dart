@@ -6,6 +6,7 @@ import 'package:pomodoro_timer_repository/pomodoro_timer_repository.dart';
 
 part 'pomodoro_timer_event.dart';
 part 'pomodoro_timer_state.dart';
+part 'pomodoro_timer_bloc.g.dart';
 part 'pomodoro_timer_bloc.freezed.dart';
 
 class PomodoroTimerBloc
@@ -13,16 +14,11 @@ class PomodoroTimerBloc
   PomodoroTimerBloc() : super(const PomodoroTimerState()) {
     on<_Started>(_onStarted);
     on<_Paused>(_onPaused);
-    on<_Stopped>(_onStopped);
     on<_ResetRequested>(_onResetRequested);
     on<_ConfigUpdated>(_onConfigUpdated);
     on<_BreakSkipped>(_onBreakSkipped);
     on<_ElapsedDurationUpdated>(_onElapsedDurationUpdated);
   }
-
-  static const _elapsedDurationSecondsKey = 'elapsedDurationSeconds';
-  static const _selectedDurationSecondsKey = 'selectedDurationSeconds';
-  static const _workCountKey = 'workCount';
 
   Timer? _timer;
 
@@ -55,13 +51,10 @@ class PomodoroTimerBloc
   FutureOr<void> _onPaused(_Paused event, Emitter<PomodoroTimerState> emit) {
     _timer?.cancel();
     emit(
-      state.copyWith(status: PomodoroTimerStatus.paused),
+      state.copyWith(
+        status: PomodoroTimerStatus.paused,
+      ),
     );
-  }
-
-  FutureOr<void> _onStopped(_Stopped event, Emitter<PomodoroTimerState> emit) {
-    _timer?.cancel();
-    _timer = null;
   }
 
   FutureOr<void> _onResetRequested(
@@ -94,15 +87,9 @@ class PomodoroTimerBloc
     }
 
     add(const _Paused());
+
     final mode = state.mode;
-
-    var workCount = state.workCount;
-
-    if (mode == PomodoroTimerMode.work) {
-      workCount = state.workCount + 1;
-    } else if (mode == PomodoroTimerMode.longBreak) {
-      workCount = 0;
-    }
+    final workCount = _computeWorkCountFromMode(mode);
 
     emit(
       state.copyWith(
@@ -176,63 +163,16 @@ class PomodoroTimerBloc
     );
   }
 
-  PomodoroTimerStatus _getStatusFromString(String input) {
-    for (final status in PomodoroTimerStatus.values) {
-      if (status.name == input) {
-        return status;
-      }
-    }
-    return PomodoroTimerStatus.paused;
-  }
-
-  PomodoroTimerMode _getModeFromString(String input) {
-    for (final mode in PomodoroTimerMode.values) {
-      if (mode.name == input) {
-        return mode;
-      }
-    }
-    return PomodoroTimerMode.work;
-  }
-
-  @override
-  PomodoroTimerState? fromJson(Map<String, dynamic> json) {
-    final elapsedDurationInSeconds =
-        json[_elapsedDurationSecondsKey] as int? ?? 0;
-    final selectedDurationInSeconds =
-        json[_selectedDurationSecondsKey] as int? ?? 0;
-    final workCount = json[_workCountKey] as int? ?? 0;
-
-    return PomodoroTimerState(
-      elapsedDuration: Duration(seconds: elapsedDurationInSeconds),
-      selectedDuration: Duration(seconds: selectedDurationInSeconds),
-      config: PomodoroConfig.fromJson(json['config'] as Map<String, dynamic>),
-      workCount: workCount,
-      mode: _getModeFromString(json['mode'] as String? ?? ''),
-      status: _getStatusFromString(json['status'] as String? ?? ''),
-    );
-  }
-
-  @override
-  Map<String, dynamic>? toJson(PomodoroTimerState state) {
-    return <String, dynamic>{
-      _selectedDurationSecondsKey: state.selectedDuration.inSeconds,
-      _elapsedDurationSecondsKey: state.elapsedDuration.inSeconds,
-      _workCountKey: state.workCount,
-      'config': state.config.toJson(),
-      'mode': state.mode.name,
-      'status': state.status.name,
-    };
-  }
-
   FutureOr<void> _onBreakSkipped(
     _BreakSkipped event,
     Emitter<PomodoroTimerState> emit,
   ) {
     _timer?.cancel();
+
     emit(
       state.copyWith(
         elapsedDuration: Duration.zero,
-        status: PomodoroTimerStatus.paused,
+        status: PomodoroTimerStatus.finished,
         mode: PomodoroTimerMode.work,
         workCount:
             state.mode == PomodoroTimerMode.longBreak ? 0 : state.workCount,
@@ -241,5 +181,27 @@ class PomodoroTimerBloc
         ),
       ),
     );
+  }
+
+  int _computeWorkCountFromMode(PomodoroTimerMode mode) {
+    var workCount = state.workCount;
+
+    if (mode == PomodoroTimerMode.work) {
+      workCount = state.workCount + 1;
+    } else if (mode == PomodoroTimerMode.longBreak) {
+      workCount = 0;
+    }
+
+    return workCount;
+  }
+
+  @override
+  PomodoroTimerState? fromJson(Map<String, dynamic> json) {
+    return PomodoroTimerState.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic>? toJson(PomodoroTimerState state) {
+    return state.toJson();
   }
 }

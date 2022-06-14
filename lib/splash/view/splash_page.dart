@@ -37,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
         visible: () {},
         hidden: () {
           AutoRouter.of(context).replace(
-            const PomodoroTimerRoute(),
+            const HomeRoute(),
           );
         },
       );
@@ -83,7 +83,7 @@ class _SplashPageState extends State<SplashPage> {
           visible: () {},
           hidden: () {
             AutoRouter.of(context).replace(
-              const PomodoroTimerRoute(),
+              const HomeRoute(),
             );
           },
         );

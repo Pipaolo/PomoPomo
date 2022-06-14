@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 part of 'pomodoro_timer_bloc.dart';
 
 enum PomodoroTimerStatus { paused, running, finished }
@@ -6,6 +8,7 @@ enum PomodoroTimerMode { work, shortBreak, longBreak }
 
 @freezed
 class PomodoroTimerState with _$PomodoroTimerState {
+  @JsonSerializable(explicitToJson: true)
   const factory PomodoroTimerState({
     @Default(PomodoroTimerStatus.paused)
         PomodoroTimerStatus status,
@@ -24,4 +27,7 @@ class PomodoroTimerState with _$PomodoroTimerState {
     @Default(Duration(minutes: 5))
         Duration selectedDuration,
   }) = _PomodoroTimerState;
+
+  factory PomodoroTimerState.fromJson(Map<String, dynamic> json) =>
+      _$PomodoroTimerStateFromJson(json);
 }

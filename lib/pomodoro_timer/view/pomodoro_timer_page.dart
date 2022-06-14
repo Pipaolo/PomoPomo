@@ -1,36 +1,27 @@
-import 'package:auto_route/auto_route.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:pomo_pomo/pomodoro_timer/bloc/pomodoro_timer_bloc.dart';
-import 'package:pomo_pomo/pomodoro_timer/view/pomodoro_timer_actions.dart';
 import 'package:pomo_pomo/pomodoro_timer/view/pomodoro_timer_clock.dart';
-import 'package:pomo_pomo/router/app_router.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 
-class PomodoroTimerPage extends StatelessWidget implements AutoRouteWrapper {
+class PomodoroTimerPage extends StatelessWidget {
   const PomodoroTimerPage({super.key});
 
-  @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PomodoroTimerBloc(),
-      child: this,
-    );
-  }
-
   Future<void> _playFinishedSound() async {
-    final player = AudioPlayer(
-      audioPipeline: AudioPipeline(
-        androidAudioEffects: [
-          AndroidLoudnessEnhancer(),
-        ],
-      ),
-    );
+    try {
+      final player = AudioPlayer(
+        audioPipeline: AudioPipeline(),
+      );
 
-    await player.setAsset('assets/audio/bell-ding.wav');
-    await player.play();
+      await player.setAsset('assets/audio/bell-ding.wav');
+      await player.play();
+    } catch (e) {
+      log('Error playing sound: $e');
+    }
   }
 
   @override
@@ -47,23 +38,12 @@ class PomodoroTimerPage extends StatelessWidget implements AutoRouteWrapper {
           centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: const Text(
+          title: Text(
             'Timer',
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                AutoRouter.of(context).push(
-                  PomodoroTimerSettingsRoute(
-                    pomodoroTimerBloc: context.read<PomodoroTimerBloc>(),
-                  ),
-                );
-              },
-              icon: const Icon(
-                FontAwesomeIcons.gear,
-              ),
-            )
-          ],
         ),
         body: Container(
           width: double.maxFinite,
@@ -76,7 +56,6 @@ class PomodoroTimerPage extends StatelessWidget implements AutoRouteWrapper {
               Expanded(
                 child: PomodoroTimerClock(),
               ),
-              PomodoroTimerActions(),
             ],
           ),
         ),
