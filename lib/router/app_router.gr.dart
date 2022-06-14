@@ -37,8 +37,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
+        RouteConfig('/#redirect',
+            path: '/', redirectTo: '/splash', fullMatch: true),
         RouteConfig(SplashRoute.name, path: '/splash'),
-        RouteConfig(HomeRoute.name, path: '/', children: [
+        RouteConfig(HomeRoute.name, path: '/pomodoro', children: [
           RouteConfig(PomodoroTimerRoute.name,
               path: 'pomodoro-timer',
               parent: HomeRoute.name,
@@ -61,7 +63,7 @@ class SplashRoute extends PageRouteInfo<void> {
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
-      : super(HomeRoute.name, path: '/', initialChildren: children);
+      : super(HomeRoute.name, path: '/pomodoro', initialChildren: children);
 
   static const String name = 'HomeRoute';
 }

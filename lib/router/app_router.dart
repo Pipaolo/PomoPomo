@@ -9,6 +9,7 @@ part 'app_router.gr.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
+    RedirectRoute(path: '/', redirectTo: '/splash'),
     AutoRoute<SplashPage>(
       page: SplashPage,
       initial: true,
@@ -16,7 +17,7 @@ part 'app_router.gr.dart';
     ),
     AutoRoute<HomePage>(
       page: HomePage,
-      path: '/',
+      path: '/pomodoro',
       children: [
         AutoRoute<PomodoroTimerPage>(
           page: PomodoroTimerPage,
