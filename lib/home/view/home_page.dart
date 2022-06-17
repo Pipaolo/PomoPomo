@@ -37,14 +37,12 @@ class HomePage extends StatefulWidget implements AutoRouteWrapper {
 class _HomePageState extends State<HomePage> {
   bool isFabVisible = false;
 
-  void _toggleFab(BuildContext context) {
-    final currentRoute = AutoRouter.of(context).topRoute;
-    Future.delayed(
-      Duration.zero,
-      () => setState(() {
-        isFabVisible = currentRoute.name == PomodoroTimerRoute.name;
-      }),
-    );
+  Future<void> _toggleFab(String routeName) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        isFabVisible = routeName == PomodoroTimerRoute.name;
+      });
+    });
   }
 
   @override
@@ -56,13 +54,35 @@ class _HomePageState extends State<HomePage> {
       ],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: isFabVisible ? const HomeFab() : null,
+      navigatorObservers: () => [
+        HomeObserver(onRouteChanged: _toggleFab),
+      ],
       bottomNavigationBuilder: (_, tabsRouter) {
-        _toggleFab(context);
         return HomeBottomNavigationBar(
           activeIndex: tabsRouter.activeIndex,
           setActiveIndex: tabsRouter.setActiveIndex,
         );
       },
     );
+  }
+}
+
+class HomeObserver extends AutoRouterObserver {
+  HomeObserver({
+    required this.onRouteChanged,
+  });
+
+  final Function(String routeName) onRouteChanged;
+
+  @override
+  void didInitTabRoute(TabPageRoute route, TabPageRoute? previousRoute) {
+    onRouteChanged.call(route.name);
+    super.didInitTabRoute(route, previousRoute);
+  }
+
+  @override
+  void didChangeTabRoute(TabPageRoute route, TabPageRoute previousRoute) {
+    onRouteChanged.call(route.name);
+    super.didChangeTabRoute(route, previousRoute);
   }
 }

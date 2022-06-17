@@ -21,6 +21,16 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<SplashPage>(
           routeData: routeData, child: WrappedRoute(child: const SplashPage()));
     },
+    TaskListRoute.name: (routeData) {
+      return MaterialPageX<TaskListPage>(
+          routeData: routeData,
+          child: WrappedRoute(child: const TaskListPage()));
+    },
+    TaskCreateRoute.name: (routeData) {
+      return MaterialPageX<TaskCreatePage>(
+          routeData: routeData,
+          child: WrappedRoute(child: const TaskCreatePage()));
+    },
     HomeRoute.name: (routeData) {
       return MaterialPageX<HomePage>(
           routeData: routeData, child: WrappedRoute(child: const HomePage()));
@@ -40,6 +50,8 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig('/#redirect',
             path: '/', redirectTo: '/splash', fullMatch: true),
         RouteConfig(SplashRoute.name, path: '/splash'),
+        RouteConfig(TaskListRoute.name, path: '/task-list'),
+        RouteConfig(TaskCreateRoute.name, path: '/task-create'),
         RouteConfig(HomeRoute.name, path: '/pomodoro', children: [
           RouteConfig(PomodoroTimerRoute.name,
               path: 'timer', parent: HomeRoute.name, usesPathAsKey: true),
@@ -55,6 +67,22 @@ class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute() : super(SplashRoute.name, path: '/splash');
 
   static const String name = 'SplashRoute';
+}
+
+/// generated route for
+/// [TaskListPage]
+class TaskListRoute extends PageRouteInfo<void> {
+  const TaskListRoute() : super(TaskListRoute.name, path: '/task-list');
+
+  static const String name = 'TaskListRoute';
+}
+
+/// generated route for
+/// [TaskCreatePage]
+class TaskCreateRoute extends PageRouteInfo<void> {
+  const TaskCreateRoute() : super(TaskCreateRoute.name, path: '/task-create');
+
+  static const String name = 'TaskCreateRoute';
 }
 
 /// generated route for

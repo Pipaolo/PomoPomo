@@ -2,7 +2,12 @@
 
 part of 'pomodoro_timer_bloc.dart';
 
-enum PomodoroTimerStatus { paused, running, finished }
+enum PomodoroTimerStatus {
+  paused,
+  running,
+  finished,
+  finishedBreak,
+}
 
 enum PomodoroTimerMode { work, shortBreak, longBreak }
 

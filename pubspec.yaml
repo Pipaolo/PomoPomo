@@ -16,6 +16,8 @@ dependencies:
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  flutter_quill: ^5.0.3
+  flutter_rating_bar: ^4.0.1
   flutter_svg: ^0.22.0
   font_awesome_flutter: ^10.1.0
   freezed_annotation: ^2.0.3
@@ -24,10 +26,13 @@ dependencies:
   hive_flutter: ^1.1.0
   hydrated_bloc: ^8.1.0
   intl: ^0.17.0
+  isar_flutter_libs: ^2.5.0
   just_audio: ^0.9.24
   just_audio_windows: ^0.1.0
   local_storage_pomodoro_config_api:
     path: "./packages/local_storage_pomodoro_config_api"
+  local_storage_task_api:
+    path: "./packages/local_storage_task_api"
   path_provider: ^2.0.11
   percent_indicator: ^4.2.2
   pomo_pomo_theme:
@@ -36,8 +41,14 @@ dependencies:
     path: "./packages/pomodoro_config_api"
   pomodoro_config_repository:
     path: "./packages/pomodoro_config_repository"
-
+  reactive_forms: ^13.0.0
   simple_animations: ^4.1.0
+
+  task_api:
+    path: "./packages/task_api"
+  task_repository:
+    path: "./packages/task_repository"
+  tuple: ^2.0.0
 
 dev_dependencies:
   auto_route_generator: ^4.0.0

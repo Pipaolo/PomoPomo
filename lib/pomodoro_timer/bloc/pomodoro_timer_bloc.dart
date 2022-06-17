@@ -97,18 +97,21 @@ class PomodoroTimerBloc
     add(const _Paused());
     final config = await _configRepository.getConfig();
     final mode = state.mode;
+    final isBreak = mode == PomodoroTimerMode.longBreak ||
+        mode == PomodoroTimerMode.shortBreak;
     final workCount = _computeWorkCountFromMode(mode);
 
     emit(
       state.copyWith(
-        status: PomodoroTimerStatus.finished,
+        status: isBreak
+            ? PomodoroTimerStatus.finished
+            : PomodoroTimerStatus.finishedBreak,
         workCount: workCount,
       ),
     );
 
-    final isShortBreakNext = isSessionFinished &&
-        state.workCount == 2 &&
-        mode == PomodoroTimerMode.work;
+    final isShortBreakNext =
+        isSessionFinished && state.workCount == 2 && !isBreak;
     final isLongBreakNext =
         isSessionFinished && state.workCount >= config.longBreakInterval;
 
@@ -159,7 +162,7 @@ class PomodoroTimerBloc
     emit(
       state.copyWith(
         elapsedDuration: Duration.zero,
-        status: PomodoroTimerStatus.finished,
+        status: PomodoroTimerStatus.finishedBreak,
         mode: PomodoroTimerMode.work,
         workCount:
             state.mode == PomodoroTimerMode.longBreak ? 0 : state.workCount,

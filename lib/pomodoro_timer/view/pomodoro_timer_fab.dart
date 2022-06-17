@@ -14,6 +14,7 @@ class PomodoroTimerFab extends StatelessWidget {
       (PomodoroTimerBloc b) => b.state.status == PomodoroTimerStatus.running,
     );
     return FloatingActionButton(
+      heroTag: 'pomodoro-timer-fab',
       child: isRunning
           ? const _AnimatedIcon(
               icon: Icon(FontAwesomeIcons.pause),
