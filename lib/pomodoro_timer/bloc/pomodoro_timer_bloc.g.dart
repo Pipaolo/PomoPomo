@@ -14,9 +14,6 @@ _$_PomodoroTimerState _$$_PomodoroTimerStateFromJson(
               PomodoroTimerStatus.paused,
       mode: $enumDecodeNullable(_$PomodoroTimerModeEnumMap, json['mode']) ??
           PomodoroTimerMode.work,
-      config: json['config'] == null
-          ? PomodoroConfig.base
-          : PomodoroConfig.fromJson(json['config'] as Map<String, dynamic>),
       workCount: json['workCount'] as int? ?? 0,
       elapsedDuration: Duration(microseconds: json['elapsedDuration'] as int) ??
           Duration.zero,
@@ -30,7 +27,6 @@ Map<String, dynamic> _$$_PomodoroTimerStateToJson(
     <String, dynamic>{
       'status': _$PomodoroTimerStatusEnumMap[instance.status],
       'mode': _$PomodoroTimerModeEnumMap[instance.mode],
-      'config': instance.config.toJson(),
       'workCount': instance.workCount,
       'elapsedDuration': instance.elapsedDuration.inMicroseconds,
       'selectedDuration': instance.selectedDuration.inMicroseconds,

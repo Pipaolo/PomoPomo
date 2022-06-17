@@ -25,7 +25,7 @@ class PomodoroTimerFab extends StatelessWidget {
         if (isRunning) {
           pomodoroTimerBloc.add(const PomodoroTimerEvent.paused());
         } else {
-          pomodoroTimerBloc.add(const PomodoroTimerEvent.started());
+          pomodoroTimerBloc.add(const PomodoroTimerEvent.played());
         }
       },
     );

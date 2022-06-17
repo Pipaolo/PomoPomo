@@ -58,7 +58,6 @@ class PomodoroTimerClock extends StatelessWidget {
                 animation: true,
                 animateFromLastPercent: true,
                 backgroundColor: Colors.grey.shade800,
-                // progressColor: Theme.of(context).colorScheme.primary,
                 center: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

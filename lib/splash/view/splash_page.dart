@@ -48,6 +48,7 @@ class _SplashPageState extends State<SplashPage> {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: PomoPomoSpacings.spacing4,
+        vertical: PomoPomoSpacings.spacing4,
       ),
       child: ElevatedButton(
         onPressed: () {

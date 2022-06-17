@@ -27,7 +27,6 @@ class PomodoroTimerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<PomodoroTimerBloc, PomodoroTimerState>(
-      listenWhen: (prev, curr) => prev.status != curr.status,
       listener: (context, state) {
         if (state.status == PomodoroTimerStatus.finished) {
           _playFinishedSound();

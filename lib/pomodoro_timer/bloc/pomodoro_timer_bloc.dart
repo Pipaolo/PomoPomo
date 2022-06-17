@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:pomodoro_timer_repository/pomodoro_timer_repository.dart';
+import 'package:pomodoro_config_repository/pomodoro_config_repository.dart';
 
 part 'pomodoro_timer_event.dart';
 part 'pomodoro_timer_state.dart';
@@ -11,18 +11,23 @@ part 'pomodoro_timer_bloc.freezed.dart';
 
 class PomodoroTimerBloc
     extends HydratedBloc<PomodoroTimerEvent, PomodoroTimerState> {
-  PomodoroTimerBloc() : super(const PomodoroTimerState()) {
-    on<_Started>(_onStarted);
+  PomodoroTimerBloc({
+    required PomodoroConfigRepository configRepository,
+  })  : _configRepository = configRepository,
+        super(const PomodoroTimerState()) {
+    on<_Played>(_onPlayed);
     on<_Paused>(_onPaused);
     on<_ResetRequested>(_onResetRequested);
-    on<_ConfigUpdated>(_onConfigUpdated);
+    on<_SelectedDurationUpdated>(_onSelectedDurationUpdated);
     on<_BreakSkipped>(_onBreakSkipped);
     on<_ElapsedDurationUpdated>(_onElapsedDurationUpdated);
   }
 
+  final PomodoroConfigRepository _configRepository;
+
   Timer? _timer;
 
-  static const _duration = Duration(seconds: 1);
+  static const _duration = Duration(seconds: 10);
 
   @override
   Future<void> close() async {
@@ -36,10 +41,14 @@ class PomodoroTimerBloc
     add(_ElapsedDurationUpdated(currentElapsedDuration));
   }
 
-  FutureOr<void> _onStarted(_Started event, Emitter<PomodoroTimerState> emit) {
+  FutureOr<void> _onPlayed(
+    _Played event,
+    Emitter<PomodoroTimerState> emit,
+  ) async {
     _timer = Timer.periodic(
       const Duration(
-        seconds: 1,
+        // seconds: 1,
+        milliseconds: 300,
       ),
       _onTick,
     );
@@ -71,8 +80,7 @@ class PomodoroTimerBloc
   FutureOr<void> _onElapsedDurationUpdated(
     _ElapsedDurationUpdated event,
     Emitter<PomodoroTimerState> emit,
-  ) {
-    final config = state.config;
+  ) async {
     final elapsedDuration = event.elapsedDuration;
     final selectedDuration = state.selectedDuration;
     final isSessionFinished = selectedDuration <= elapsedDuration;
@@ -87,7 +95,7 @@ class PomodoroTimerBloc
     }
 
     add(const _Paused());
-
+    final config = await _configRepository.getConfig();
     final mode = state.mode;
     final workCount = _computeWorkCountFromMode(mode);
 
@@ -101,15 +109,15 @@ class PomodoroTimerBloc
     final isShortBreakNext = isSessionFinished &&
         state.workCount == 2 &&
         mode == PomodoroTimerMode.work;
-    final isLongBreakNext = isSessionFinished &&
-        state.workCount >= config.pomodoroCountBeforeLongBreak;
+    final isLongBreakNext =
+        isSessionFinished && state.workCount >= config.longBreakInterval;
 
     if (isLongBreakNext) {
       emit(
         state.copyWith(
           elapsedDuration: Duration.zero,
           selectedDuration: Duration(
-            minutes: config.longBreakDurationInMinutes.toInt(),
+            minutes: config.longBreakDuration,
           ),
           mode: PomodoroTimerMode.longBreak,
         ),
@@ -122,7 +130,7 @@ class PomodoroTimerBloc
         state.copyWith(
           elapsedDuration: Duration.zero,
           selectedDuration: Duration(
-            minutes: config.shortBreakDurationInMinutes.toInt(),
+            minutes: config.shortBreakDuration,
           ),
           mode: PomodoroTimerMode.shortBreak,
         ),
@@ -134,31 +142,9 @@ class PomodoroTimerBloc
       state.copyWith(
         elapsedDuration: Duration.zero,
         selectedDuration: Duration(
-          minutes: config.pomodoroDurationInMinutes.toInt(),
+          minutes: config.pomodoroDuration,
         ),
         mode: PomodoroTimerMode.work,
-      ),
-    );
-  }
-
-  FutureOr<void> _onConfigUpdated(
-    _ConfigUpdated event,
-    Emitter<PomodoroTimerState> emit,
-  ) {
-    final config = state.config;
-
-    emit(
-      state.copyWith(
-        config: config.copyWith(
-          longBreakDurationInMinutes: event.longBreakDurationInMinutes ??
-              config.longBreakDurationInMinutes,
-          shortBreakDurationInMinutes: event.shortBreakDurationInMinutes ??
-              config.shortBreakDurationInMinutes,
-          pomodoroDurationInMinutes: event.pomodoroDurationInMinutes ??
-              config.pomodoroDurationInMinutes,
-          pomodoroCountBeforeLongBreak: event.pomodoroCountBeforeLongBreak ??
-              config.pomodoroCountBeforeLongBreak,
-        ),
       ),
     );
   }
@@ -166,8 +152,9 @@ class PomodoroTimerBloc
   FutureOr<void> _onBreakSkipped(
     _BreakSkipped event,
     Emitter<PomodoroTimerState> emit,
-  ) {
+  ) async {
     _timer?.cancel();
+    final config = await _configRepository.getConfig();
 
     emit(
       state.copyWith(
@@ -177,7 +164,7 @@ class PomodoroTimerBloc
         workCount:
             state.mode == PomodoroTimerMode.longBreak ? 0 : state.workCount,
         selectedDuration: Duration(
-          minutes: state.config.pomodoroDurationInMinutes.toInt(),
+          minutes: config.pomodoroDuration,
         ),
       ),
     );
@@ -203,5 +190,16 @@ class PomodoroTimerBloc
   @override
   Map<String, dynamic>? toJson(PomodoroTimerState state) {
     return state.toJson();
+  }
+
+  FutureOr<void> _onSelectedDurationUpdated(
+    _SelectedDurationUpdated event,
+    Emitter<PomodoroTimerState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        selectedDuration: event.selectedDuration,
+      ),
+    );
   }
 }

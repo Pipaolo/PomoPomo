@@ -26,12 +26,17 @@ dependencies:
   intl: ^0.17.0
   just_audio: ^0.9.24
   just_audio_windows: ^0.1.0
+  local_storage_pomodoro_config_api:
+    path: "./packages/local_storage_pomodoro_config_api"
   path_provider: ^2.0.11
   percent_indicator: ^4.2.2
   pomo_pomo_theme:
     path: "./packages/pomo_pomo_theme"
-  pomodoro_timer_repository:
-    path: "./packages/pomodoro_timer_repository"
+  pomodoro_config_api:
+    path: "./packages/pomodoro_config_api"
+  pomodoro_config_repository:
+    path: "./packages/pomodoro_config_repository"
+
   simple_animations: ^4.1.0
 
 dev_dependencies:

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:pomo_pomo/home/home.dart';
 import 'package:pomo_pomo/pomodoro_timer/pomodoro_timer.dart';
+import 'package:pomo_pomo/pomodoro_timer_settings/pomodoro_timer_settings.dart';
 import 'package:pomo_pomo/splash/splash.dart';
 
 part 'app_router.gr.dart';
@@ -21,7 +22,7 @@ part 'app_router.gr.dart';
       children: [
         AutoRoute<PomodoroTimerPage>(
           page: PomodoroTimerPage,
-          path: 'pomodoro-timer',
+          path: 'timer',
           usesPathAsKey: true,
         ),
         AutoRoute<PomodoroTimerSettingsPage>(

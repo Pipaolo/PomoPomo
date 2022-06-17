@@ -497,6 +497,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.0"
+  local_storage_pomodoro_config_api:
+    dependency: "direct main"
+    description:
+      path: "packages/local_storage_pomodoro_config_api"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   logging:
     dependency: transitive
     description:
@@ -665,10 +672,17 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
-  pomodoro_timer_repository:
+  pomodoro_config_api:
     dependency: "direct main"
     description:
-      path: "packages/pomodoro_timer_repository"
+      path: "packages/pomodoro_config_api"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  pomodoro_config_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/pomodoro_config_repository"
       relative: true
     source: path
     version: "1.0.0+1"

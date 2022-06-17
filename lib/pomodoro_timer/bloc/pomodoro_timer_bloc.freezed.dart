@@ -18,79 +18,66 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PomodoroTimerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() played,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
+    required TResult Function(Duration selectedDuration)
+        selectedDurationUpdated,
     required TResult Function(Duration elapsedDuration) elapsedDurationUpdated,
-    required TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)
-        configUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Played value) played,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
+    required TResult Function(_SelectedDurationUpdated value)
+        selectedDurationUpdated,
     required TResult Function(_ElapsedDurationUpdated value)
         elapsedDurationUpdated,
-    required TResult Function(_ConfigUpdated value) configUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,37 +101,36 @@ class _$PomodoroTimerEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
-  factory _$$_StartedCopyWith(
-          _$_Started value, $Res Function(_$_Started) then) =
-      __$$_StartedCopyWithImpl<$Res>;
+abstract class _$$_PlayedCopyWith<$Res> {
+  factory _$$_PlayedCopyWith(_$_Played value, $Res Function(_$_Played) then) =
+      __$$_PlayedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
+class __$$_PlayedCopyWithImpl<$Res>
     extends _$PomodoroTimerEventCopyWithImpl<$Res>
-    implements _$$_StartedCopyWith<$Res> {
-  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
-      : super(_value, (v) => _then(v as _$_Started));
+    implements _$$_PlayedCopyWith<$Res> {
+  __$$_PlayedCopyWithImpl(_$_Played _value, $Res Function(_$_Played) _then)
+      : super(_value, (v) => _then(v as _$_Played));
 
   @override
-  _$_Started get _value => super._value as _$_Started;
+  _$_Played get _value => super._value as _$_Played;
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$_Played implements _Played {
+  const _$_Played();
 
   @override
   String toString() {
-    return 'PomodoroTimerEvent.started()';
+    return 'PomodoroTimerEvent.played()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType && other is _$_Played);
   }
 
   @override
@@ -153,57 +139,43 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() played,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
+    required TResult Function(Duration selectedDuration)
+        selectedDurationUpdated,
     required TResult Function(Duration elapsedDuration) elapsedDurationUpdated,
-    required TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)
-        configUpdated,
   }) {
-    return started();
+    return played();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
   }) {
-    return started?.call();
+    return played?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (played != null) {
+      return played();
     }
     return orElse();
   }
@@ -211,50 +183,51 @@ class _$_Started implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Played value) played,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
+    required TResult Function(_SelectedDurationUpdated value)
+        selectedDurationUpdated,
     required TResult Function(_ElapsedDurationUpdated value)
         elapsedDurationUpdated,
-    required TResult Function(_ConfigUpdated value) configUpdated,
   }) {
-    return started(this);
+    return played(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
   }) {
-    return started?.call(this);
+    return played?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (played != null) {
+      return played(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements PomodoroTimerEvent {
-  const factory _Started() = _$_Started;
+abstract class _Played implements PomodoroTimerEvent {
+  const factory _Played() = _$_Played;
 }
 
 /// @nodoc
@@ -296,17 +269,13 @@ class _$_Paused implements _Paused {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() played,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
+    required TResult Function(Duration selectedDuration)
+        selectedDurationUpdated,
     required TResult Function(Duration elapsedDuration) elapsedDurationUpdated,
-    required TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)
-        configUpdated,
   }) {
     return paused();
   }
@@ -314,17 +283,12 @@ class _$_Paused implements _Paused {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
   }) {
     return paused?.call();
   }
@@ -332,17 +296,12 @@ class _$_Paused implements _Paused {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
     required TResult orElse(),
   }) {
     if (paused != null) {
@@ -354,13 +313,14 @@ class _$_Paused implements _Paused {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Played value) played,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
+    required TResult Function(_SelectedDurationUpdated value)
+        selectedDurationUpdated,
     required TResult Function(_ElapsedDurationUpdated value)
         elapsedDurationUpdated,
-    required TResult Function(_ConfigUpdated value) configUpdated,
   }) {
     return paused(this);
   }
@@ -368,12 +328,12 @@ class _$_Paused implements _Paused {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
   }) {
     return paused?.call(this);
   }
@@ -381,12 +341,12 @@ class _$_Paused implements _Paused {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
     required TResult orElse(),
   }) {
     if (paused != null) {
@@ -441,17 +401,13 @@ class _$_BreakSkipped implements _BreakSkipped {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() played,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
+    required TResult Function(Duration selectedDuration)
+        selectedDurationUpdated,
     required TResult Function(Duration elapsedDuration) elapsedDurationUpdated,
-    required TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)
-        configUpdated,
   }) {
     return breakSkipped();
   }
@@ -459,17 +415,12 @@ class _$_BreakSkipped implements _BreakSkipped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
   }) {
     return breakSkipped?.call();
   }
@@ -477,17 +428,12 @@ class _$_BreakSkipped implements _BreakSkipped {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
     required TResult orElse(),
   }) {
     if (breakSkipped != null) {
@@ -499,13 +445,14 @@ class _$_BreakSkipped implements _BreakSkipped {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Played value) played,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
+    required TResult Function(_SelectedDurationUpdated value)
+        selectedDurationUpdated,
     required TResult Function(_ElapsedDurationUpdated value)
         elapsedDurationUpdated,
-    required TResult Function(_ConfigUpdated value) configUpdated,
   }) {
     return breakSkipped(this);
   }
@@ -513,12 +460,12 @@ class _$_BreakSkipped implements _BreakSkipped {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
   }) {
     return breakSkipped?.call(this);
   }
@@ -526,12 +473,12 @@ class _$_BreakSkipped implements _BreakSkipped {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
     required TResult orElse(),
   }) {
     if (breakSkipped != null) {
@@ -586,17 +533,13 @@ class _$_ResetRequested implements _ResetRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() played,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
+    required TResult Function(Duration selectedDuration)
+        selectedDurationUpdated,
     required TResult Function(Duration elapsedDuration) elapsedDurationUpdated,
-    required TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)
-        configUpdated,
   }) {
     return resetRequested();
   }
@@ -604,17 +547,12 @@ class _$_ResetRequested implements _ResetRequested {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
   }) {
     return resetRequested?.call();
   }
@@ -622,17 +560,12 @@ class _$_ResetRequested implements _ResetRequested {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
     required TResult orElse(),
   }) {
     if (resetRequested != null) {
@@ -644,13 +577,14 @@ class _$_ResetRequested implements _ResetRequested {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Played value) played,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
+    required TResult Function(_SelectedDurationUpdated value)
+        selectedDurationUpdated,
     required TResult Function(_ElapsedDurationUpdated value)
         elapsedDurationUpdated,
-    required TResult Function(_ConfigUpdated value) configUpdated,
   }) {
     return resetRequested(this);
   }
@@ -658,12 +592,12 @@ class _$_ResetRequested implements _ResetRequested {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
   }) {
     return resetRequested?.call(this);
   }
@@ -671,12 +605,12 @@ class _$_ResetRequested implements _ResetRequested {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
     required TResult orElse(),
   }) {
     if (resetRequested != null) {
@@ -688,6 +622,172 @@ class _$_ResetRequested implements _ResetRequested {
 
 abstract class _ResetRequested implements PomodoroTimerEvent {
   const factory _ResetRequested() = _$_ResetRequested;
+}
+
+/// @nodoc
+abstract class _$$_SelectedDurationUpdatedCopyWith<$Res> {
+  factory _$$_SelectedDurationUpdatedCopyWith(_$_SelectedDurationUpdated value,
+          $Res Function(_$_SelectedDurationUpdated) then) =
+      __$$_SelectedDurationUpdatedCopyWithImpl<$Res>;
+  $Res call({Duration selectedDuration});
+}
+
+/// @nodoc
+class __$$_SelectedDurationUpdatedCopyWithImpl<$Res>
+    extends _$PomodoroTimerEventCopyWithImpl<$Res>
+    implements _$$_SelectedDurationUpdatedCopyWith<$Res> {
+  __$$_SelectedDurationUpdatedCopyWithImpl(_$_SelectedDurationUpdated _value,
+      $Res Function(_$_SelectedDurationUpdated) _then)
+      : super(_value, (v) => _then(v as _$_SelectedDurationUpdated));
+
+  @override
+  _$_SelectedDurationUpdated get _value =>
+      super._value as _$_SelectedDurationUpdated;
+
+  @override
+  $Res call({
+    Object? selectedDuration = freezed,
+  }) {
+    return _then(_$_SelectedDurationUpdated(
+      selectedDuration == freezed
+          ? _value.selectedDuration
+          : selectedDuration // ignore: cast_nullable_to_non_nullable
+              as Duration,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SelectedDurationUpdated implements _SelectedDurationUpdated {
+  const _$_SelectedDurationUpdated(this.selectedDuration);
+
+  @override
+  final Duration selectedDuration;
+
+  @override
+  String toString() {
+    return 'PomodoroTimerEvent.selectedDurationUpdated(selectedDuration: $selectedDuration)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SelectedDurationUpdated &&
+            const DeepCollectionEquality()
+                .equals(other.selectedDuration, selectedDuration));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(selectedDuration));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SelectedDurationUpdatedCopyWith<_$_SelectedDurationUpdated>
+      get copyWith =>
+          __$$_SelectedDurationUpdatedCopyWithImpl<_$_SelectedDurationUpdated>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() played,
+    required TResult Function() paused,
+    required TResult Function() breakSkipped,
+    required TResult Function() resetRequested,
+    required TResult Function(Duration selectedDuration)
+        selectedDurationUpdated,
+    required TResult Function(Duration elapsedDuration) elapsedDurationUpdated,
+  }) {
+    return selectedDurationUpdated(selectedDuration);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? played,
+    TResult Function()? paused,
+    TResult Function()? breakSkipped,
+    TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
+    TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
+  }) {
+    return selectedDurationUpdated?.call(selectedDuration);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? played,
+    TResult Function()? paused,
+    TResult Function()? breakSkipped,
+    TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
+    TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
+    required TResult orElse(),
+  }) {
+    if (selectedDurationUpdated != null) {
+      return selectedDurationUpdated(selectedDuration);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Played value) played,
+    required TResult Function(_Paused value) paused,
+    required TResult Function(_BreakSkipped value) breakSkipped,
+    required TResult Function(_ResetRequested value) resetRequested,
+    required TResult Function(_SelectedDurationUpdated value)
+        selectedDurationUpdated,
+    required TResult Function(_ElapsedDurationUpdated value)
+        elapsedDurationUpdated,
+  }) {
+    return selectedDurationUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Played value)? played,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_BreakSkipped value)? breakSkipped,
+    TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
+    TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
+  }) {
+    return selectedDurationUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Played value)? played,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_BreakSkipped value)? breakSkipped,
+    TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
+    TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
+    required TResult orElse(),
+  }) {
+    if (selectedDurationUpdated != null) {
+      return selectedDurationUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectedDurationUpdated implements PomodoroTimerEvent {
+  const factory _SelectedDurationUpdated(final Duration selectedDuration) =
+      _$_SelectedDurationUpdated;
+
+  Duration get selectedDuration => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_SelectedDurationUpdatedCopyWith<_$_SelectedDurationUpdated>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -758,17 +858,13 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() played,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
+    required TResult Function(Duration selectedDuration)
+        selectedDurationUpdated,
     required TResult Function(Duration elapsedDuration) elapsedDurationUpdated,
-    required TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)
-        configUpdated,
   }) {
     return elapsedDurationUpdated(elapsedDuration);
   }
@@ -776,17 +872,12 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
   }) {
     return elapsedDurationUpdated?.call(elapsedDuration);
   }
@@ -794,17 +885,12 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? played,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
     TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
     required TResult orElse(),
   }) {
     if (elapsedDurationUpdated != null) {
@@ -816,13 +902,14 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Played value) played,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
+    required TResult Function(_SelectedDurationUpdated value)
+        selectedDurationUpdated,
     required TResult Function(_ElapsedDurationUpdated value)
         elapsedDurationUpdated,
-    required TResult Function(_ConfigUpdated value) configUpdated,
   }) {
     return elapsedDurationUpdated(this);
   }
@@ -830,12 +917,12 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
   }) {
     return elapsedDurationUpdated?.call(this);
   }
@@ -843,12 +930,12 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Played value)? played,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
     TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
     required TResult orElse(),
   }) {
     if (elapsedDurationUpdated != null) {
@@ -868,242 +955,6 @@ abstract class _ElapsedDurationUpdated implements PomodoroTimerEvent {
       throw _privateConstructorUsedError;
 }
 
-/// @nodoc
-abstract class _$$_ConfigUpdatedCopyWith<$Res> {
-  factory _$$_ConfigUpdatedCopyWith(
-          _$_ConfigUpdated value, $Res Function(_$_ConfigUpdated) then) =
-      __$$_ConfigUpdatedCopyWithImpl<$Res>;
-  $Res call(
-      {double? pomodoroCountBeforeLongBreak,
-      double? pomodoroDurationInMinutes,
-      double? shortBreakDurationInMinutes,
-      double? longBreakDurationInMinutes});
-}
-
-/// @nodoc
-class __$$_ConfigUpdatedCopyWithImpl<$Res>
-    extends _$PomodoroTimerEventCopyWithImpl<$Res>
-    implements _$$_ConfigUpdatedCopyWith<$Res> {
-  __$$_ConfigUpdatedCopyWithImpl(
-      _$_ConfigUpdated _value, $Res Function(_$_ConfigUpdated) _then)
-      : super(_value, (v) => _then(v as _$_ConfigUpdated));
-
-  @override
-  _$_ConfigUpdated get _value => super._value as _$_ConfigUpdated;
-
-  @override
-  $Res call({
-    Object? pomodoroCountBeforeLongBreak = freezed,
-    Object? pomodoroDurationInMinutes = freezed,
-    Object? shortBreakDurationInMinutes = freezed,
-    Object? longBreakDurationInMinutes = freezed,
-  }) {
-    return _then(_$_ConfigUpdated(
-      pomodoroCountBeforeLongBreak: pomodoroCountBeforeLongBreak == freezed
-          ? _value.pomodoroCountBeforeLongBreak
-          : pomodoroCountBeforeLongBreak // ignore: cast_nullable_to_non_nullable
-              as double?,
-      pomodoroDurationInMinutes: pomodoroDurationInMinutes == freezed
-          ? _value.pomodoroDurationInMinutes
-          : pomodoroDurationInMinutes // ignore: cast_nullable_to_non_nullable
-              as double?,
-      shortBreakDurationInMinutes: shortBreakDurationInMinutes == freezed
-          ? _value.shortBreakDurationInMinutes
-          : shortBreakDurationInMinutes // ignore: cast_nullable_to_non_nullable
-              as double?,
-      longBreakDurationInMinutes: longBreakDurationInMinutes == freezed
-          ? _value.longBreakDurationInMinutes
-          : longBreakDurationInMinutes // ignore: cast_nullable_to_non_nullable
-              as double?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_ConfigUpdated implements _ConfigUpdated {
-  const _$_ConfigUpdated(
-      {this.pomodoroCountBeforeLongBreak,
-      this.pomodoroDurationInMinutes,
-      this.shortBreakDurationInMinutes,
-      this.longBreakDurationInMinutes});
-
-  @override
-  final double? pomodoroCountBeforeLongBreak;
-  @override
-  final double? pomodoroDurationInMinutes;
-  @override
-  final double? shortBreakDurationInMinutes;
-  @override
-  final double? longBreakDurationInMinutes;
-
-  @override
-  String toString() {
-    return 'PomodoroTimerEvent.configUpdated(pomodoroCountBeforeLongBreak: $pomodoroCountBeforeLongBreak, pomodoroDurationInMinutes: $pomodoroDurationInMinutes, shortBreakDurationInMinutes: $shortBreakDurationInMinutes, longBreakDurationInMinutes: $longBreakDurationInMinutes)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ConfigUpdated &&
-            const DeepCollectionEquality().equals(
-                other.pomodoroCountBeforeLongBreak,
-                pomodoroCountBeforeLongBreak) &&
-            const DeepCollectionEquality().equals(
-                other.pomodoroDurationInMinutes, pomodoroDurationInMinutes) &&
-            const DeepCollectionEquality().equals(
-                other.shortBreakDurationInMinutes,
-                shortBreakDurationInMinutes) &&
-            const DeepCollectionEquality().equals(
-                other.longBreakDurationInMinutes, longBreakDurationInMinutes));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(pomodoroCountBeforeLongBreak),
-      const DeepCollectionEquality().hash(pomodoroDurationInMinutes),
-      const DeepCollectionEquality().hash(shortBreakDurationInMinutes),
-      const DeepCollectionEquality().hash(longBreakDurationInMinutes));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_ConfigUpdatedCopyWith<_$_ConfigUpdated> get copyWith =>
-      __$$_ConfigUpdatedCopyWithImpl<_$_ConfigUpdated>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() paused,
-    required TResult Function() breakSkipped,
-    required TResult Function() resetRequested,
-    required TResult Function(Duration elapsedDuration) elapsedDurationUpdated,
-    required TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)
-        configUpdated,
-  }) {
-    return configUpdated(
-        pomodoroCountBeforeLongBreak,
-        pomodoroDurationInMinutes,
-        shortBreakDurationInMinutes,
-        longBreakDurationInMinutes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? paused,
-    TResult Function()? breakSkipped,
-    TResult Function()? resetRequested,
-    TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
-  }) {
-    return configUpdated?.call(
-        pomodoroCountBeforeLongBreak,
-        pomodoroDurationInMinutes,
-        shortBreakDurationInMinutes,
-        longBreakDurationInMinutes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? paused,
-    TResult Function()? breakSkipped,
-    TResult Function()? resetRequested,
-    TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
-    TResult Function(
-            double? pomodoroCountBeforeLongBreak,
-            double? pomodoroDurationInMinutes,
-            double? shortBreakDurationInMinutes,
-            double? longBreakDurationInMinutes)?
-        configUpdated,
-    required TResult orElse(),
-  }) {
-    if (configUpdated != null) {
-      return configUpdated(
-          pomodoroCountBeforeLongBreak,
-          pomodoroDurationInMinutes,
-          shortBreakDurationInMinutes,
-          longBreakDurationInMinutes);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_Paused value) paused,
-    required TResult Function(_BreakSkipped value) breakSkipped,
-    required TResult Function(_ResetRequested value) resetRequested,
-    required TResult Function(_ElapsedDurationUpdated value)
-        elapsedDurationUpdated,
-    required TResult Function(_ConfigUpdated value) configUpdated,
-  }) {
-    return configUpdated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Paused value)? paused,
-    TResult Function(_BreakSkipped value)? breakSkipped,
-    TResult Function(_ResetRequested value)? resetRequested,
-    TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
-  }) {
-    return configUpdated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Paused value)? paused,
-    TResult Function(_BreakSkipped value)? breakSkipped,
-    TResult Function(_ResetRequested value)? resetRequested,
-    TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
-    TResult Function(_ConfigUpdated value)? configUpdated,
-    required TResult orElse(),
-  }) {
-    if (configUpdated != null) {
-      return configUpdated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ConfigUpdated implements PomodoroTimerEvent {
-  const factory _ConfigUpdated(
-      {final double? pomodoroCountBeforeLongBreak,
-      final double? pomodoroDurationInMinutes,
-      final double? shortBreakDurationInMinutes,
-      final double? longBreakDurationInMinutes}) = _$_ConfigUpdated;
-
-  double? get pomodoroCountBeforeLongBreak =>
-      throw _privateConstructorUsedError;
-  double? get pomodoroDurationInMinutes => throw _privateConstructorUsedError;
-  double? get shortBreakDurationInMinutes => throw _privateConstructorUsedError;
-  double? get longBreakDurationInMinutes => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  _$$_ConfigUpdatedCopyWith<_$_ConfigUpdated> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 PomodoroTimerState _$PomodoroTimerStateFromJson(Map<String, dynamic> json) {
   return _PomodoroTimerState.fromJson(json);
 }
@@ -1112,7 +963,6 @@ PomodoroTimerState _$PomodoroTimerStateFromJson(Map<String, dynamic> json) {
 mixin _$PomodoroTimerState {
   PomodoroTimerStatus get status => throw _privateConstructorUsedError;
   PomodoroTimerMode get mode => throw _privateConstructorUsedError;
-  PomodoroConfig get config => throw _privateConstructorUsedError;
   int get workCount => throw _privateConstructorUsedError; // Durations
   Duration get elapsedDuration => throw _privateConstructorUsedError;
   Duration get selectedDuration => throw _privateConstructorUsedError;
@@ -1131,12 +981,9 @@ abstract class $PomodoroTimerStateCopyWith<$Res> {
   $Res call(
       {PomodoroTimerStatus status,
       PomodoroTimerMode mode,
-      PomodoroConfig config,
       int workCount,
       Duration elapsedDuration,
       Duration selectedDuration});
-
-  $PomodoroConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -1152,7 +999,6 @@ class _$PomodoroTimerStateCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? mode = freezed,
-    Object? config = freezed,
     Object? workCount = freezed,
     Object? elapsedDuration = freezed,
     Object? selectedDuration = freezed,
@@ -1166,10 +1012,6 @@ class _$PomodoroTimerStateCopyWithImpl<$Res>
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as PomodoroTimerMode,
-      config: config == freezed
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as PomodoroConfig,
       workCount: workCount == freezed
           ? _value.workCount
           : workCount // ignore: cast_nullable_to_non_nullable
@@ -1184,13 +1026,6 @@ class _$PomodoroTimerStateCopyWithImpl<$Res>
               as Duration,
     ));
   }
-
-  @override
-  $PomodoroConfigCopyWith<$Res> get config {
-    return $PomodoroConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -1203,13 +1038,9 @@ abstract class _$$_PomodoroTimerStateCopyWith<$Res>
   $Res call(
       {PomodoroTimerStatus status,
       PomodoroTimerMode mode,
-      PomodoroConfig config,
       int workCount,
       Duration elapsedDuration,
       Duration selectedDuration});
-
-  @override
-  $PomodoroConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -1227,7 +1058,6 @@ class __$$_PomodoroTimerStateCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? mode = freezed,
-    Object? config = freezed,
     Object? workCount = freezed,
     Object? elapsedDuration = freezed,
     Object? selectedDuration = freezed,
@@ -1241,10 +1071,6 @@ class __$$_PomodoroTimerStateCopyWithImpl<$Res>
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as PomodoroTimerMode,
-      config: config == freezed
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as PomodoroConfig,
       workCount: workCount == freezed
           ? _value.workCount
           : workCount // ignore: cast_nullable_to_non_nullable
@@ -1268,7 +1094,6 @@ class _$_PomodoroTimerState implements _PomodoroTimerState {
   const _$_PomodoroTimerState(
       {this.status = PomodoroTimerStatus.paused,
       this.mode = PomodoroTimerMode.work,
-      this.config = PomodoroConfig.base,
       this.workCount = 0,
       this.elapsedDuration = Duration.zero,
       this.selectedDuration = const Duration(minutes: 5)});
@@ -1284,9 +1109,6 @@ class _$_PomodoroTimerState implements _PomodoroTimerState {
   final PomodoroTimerMode mode;
   @override
   @JsonKey()
-  final PomodoroConfig config;
-  @override
-  @JsonKey()
   final int workCount;
 // Durations
   @override
@@ -1298,7 +1120,7 @@ class _$_PomodoroTimerState implements _PomodoroTimerState {
 
   @override
   String toString() {
-    return 'PomodoroTimerState(status: $status, mode: $mode, config: $config, workCount: $workCount, elapsedDuration: $elapsedDuration, selectedDuration: $selectedDuration)';
+    return 'PomodoroTimerState(status: $status, mode: $mode, workCount: $workCount, elapsedDuration: $elapsedDuration, selectedDuration: $selectedDuration)';
   }
 
   @override
@@ -1308,7 +1130,6 @@ class _$_PomodoroTimerState implements _PomodoroTimerState {
             other is _$_PomodoroTimerState &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.mode, mode) &&
-            const DeepCollectionEquality().equals(other.config, config) &&
             const DeepCollectionEquality().equals(other.workCount, workCount) &&
             const DeepCollectionEquality()
                 .equals(other.elapsedDuration, elapsedDuration) &&
@@ -1322,7 +1143,6 @@ class _$_PomodoroTimerState implements _PomodoroTimerState {
       runtimeType,
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(mode),
-      const DeepCollectionEquality().hash(config),
       const DeepCollectionEquality().hash(workCount),
       const DeepCollectionEquality().hash(elapsedDuration),
       const DeepCollectionEquality().hash(selectedDuration));
@@ -1343,7 +1163,6 @@ abstract class _PomodoroTimerState implements PomodoroTimerState {
   const factory _PomodoroTimerState(
       {final PomodoroTimerStatus status,
       final PomodoroTimerMode mode,
-      final PomodoroConfig config,
       final int workCount,
       final Duration elapsedDuration,
       final Duration selectedDuration}) = _$_PomodoroTimerState;
@@ -1355,8 +1174,6 @@ abstract class _PomodoroTimerState implements PomodoroTimerState {
   PomodoroTimerStatus get status => throw _privateConstructorUsedError;
   @override
   PomodoroTimerMode get mode => throw _privateConstructorUsedError;
-  @override
-  PomodoroConfig get config => throw _privateConstructorUsedError;
   @override
   int get workCount => throw _privateConstructorUsedError;
   @override // Durations

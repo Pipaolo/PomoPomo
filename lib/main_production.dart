@@ -6,16 +6,25 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter/cupertino.dart';
+import 'package:local_storage_pomodoro_config_api/local_storage_pomodoro_config_api.dart';
 import 'package:pomo_pomo/app/app.dart';
 import 'package:pomo_pomo/bootstrap.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
+import 'package:pomodoro_config_repository/pomodoro_config_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final theme = await PomoPomoTheme.build();
   await bootstrap(
-    () => App(
-      theme: theme,
-    ),
+    () {
+      Hive.registerAdapter(PomodoroConfigTypeAdapter());
+
+      return AppView(
+        pomodoroConfigRepository: PomodoroConfigRepository(
+          configApi: LocalStoragePomodoroConfigApi(),
+        ),
+        theme: theme,
+      );
+    },
   );
 }

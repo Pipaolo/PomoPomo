@@ -28,6 +28,7 @@ class HomeBottomNavigationBar extends StatelessWidget {
       rightCornerRadius: 20,
       // notchMargin: 12,
       // notchSmoothness: NotchSmoothness.smoothEdge,
+      gapWidth: 12,
       activeColor: colorScheme.onSurfaceVariant,
       inactiveColor: Colors.grey.shade500,
       activeIndex: activeIndex,

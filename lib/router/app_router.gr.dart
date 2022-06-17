@@ -42,9 +42,7 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(SplashRoute.name, path: '/splash'),
         RouteConfig(HomeRoute.name, path: '/pomodoro', children: [
           RouteConfig(PomodoroTimerRoute.name,
-              path: 'pomodoro-timer',
-              parent: HomeRoute.name,
-              usesPathAsKey: true),
+              path: 'timer', parent: HomeRoute.name, usesPathAsKey: true),
           RouteConfig(PomodoroTimerSettingsRoute.name,
               path: 'settings', parent: HomeRoute.name, usesPathAsKey: true)
         ])
@@ -71,8 +69,7 @@ class HomeRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [PomodoroTimerPage]
 class PomodoroTimerRoute extends PageRouteInfo<void> {
-  const PomodoroTimerRoute()
-      : super(PomodoroTimerRoute.name, path: 'pomodoro-timer');
+  const PomodoroTimerRoute() : super(PomodoroTimerRoute.name, path: 'timer');
 
   static const String name = 'PomodoroTimerRoute';
 }
