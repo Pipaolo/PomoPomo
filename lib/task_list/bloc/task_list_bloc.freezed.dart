@@ -419,6 +419,7 @@ abstract class _SubscriptionRequested implements TaskListEvent {
 mixin _$TaskListState {
   TaskListStatus get status => throw _privateConstructorUsedError;
   List<Task> get tasks => throw _privateConstructorUsedError;
+  List<Task> get completedTasks => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TaskListStateCopyWith<TaskListState> get copyWith =>
@@ -430,7 +431,8 @@ abstract class $TaskListStateCopyWith<$Res> {
   factory $TaskListStateCopyWith(
           TaskListState value, $Res Function(TaskListState) then) =
       _$TaskListStateCopyWithImpl<$Res>;
-  $Res call({TaskListStatus status, List<Task> tasks});
+  $Res call(
+      {TaskListStatus status, List<Task> tasks, List<Task> completedTasks});
 }
 
 /// @nodoc
@@ -446,6 +448,7 @@ class _$TaskListStateCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? tasks = freezed,
+    Object? completedTasks = freezed,
   }) {
     return _then(_value.copyWith(
       status: status == freezed
@@ -456,35 +459,43 @@ class _$TaskListStateCopyWithImpl<$Res>
           ? _value.tasks
           : tasks // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      completedTasks: completedTasks == freezed
+          ? _value.completedTasks
+          : completedTasks // ignore: cast_nullable_to_non_nullable
+              as List<Task>,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res>
+abstract class _$$_TaskListStateCopyWith<$Res>
     implements $TaskListStateCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+  factory _$$_TaskListStateCopyWith(
+          _$_TaskListState value, $Res Function(_$_TaskListState) then) =
+      __$$_TaskListStateCopyWithImpl<$Res>;
   @override
-  $Res call({TaskListStatus status, List<Task> tasks});
+  $Res call(
+      {TaskListStatus status, List<Task> tasks, List<Task> completedTasks});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$TaskListStateCopyWithImpl<$Res>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
+class __$$_TaskListStateCopyWithImpl<$Res>
+    extends _$TaskListStateCopyWithImpl<$Res>
+    implements _$$_TaskListStateCopyWith<$Res> {
+  __$$_TaskListStateCopyWithImpl(
+      _$_TaskListState _value, $Res Function(_$_TaskListState) _then)
+      : super(_value, (v) => _then(v as _$_TaskListState));
 
   @override
-  _$_Initial get _value => super._value as _$_Initial;
+  _$_TaskListState get _value => super._value as _$_TaskListState;
 
   @override
   $Res call({
     Object? status = freezed,
     Object? tasks = freezed,
+    Object? completedTasks = freezed,
   }) {
-    return _then(_$_Initial(
+    return _then(_$_TaskListState(
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -493,17 +504,23 @@ class __$$_InitialCopyWithImpl<$Res> extends _$TaskListStateCopyWithImpl<$Res>
           ? _value._tasks
           : tasks // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      completedTasks: completedTasks == freezed
+          ? _value._completedTasks
+          : completedTasks // ignore: cast_nullable_to_non_nullable
+              as List<Task>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial(
+class _$_TaskListState implements _TaskListState {
+  const _$_TaskListState(
       {this.status = TaskListStatus.initial,
-      final List<Task> tasks = const <Task>[]})
-      : _tasks = tasks;
+      final List<Task> tasks = const <Task>[],
+      final List<Task> completedTasks = const <Task>[]})
+      : _tasks = tasks,
+        _completedTasks = completedTasks;
 
   @override
   @JsonKey()
@@ -516,42 +533,57 @@ class _$_Initial implements _Initial {
     return EqualUnmodifiableListView(_tasks);
   }
 
+  final List<Task> _completedTasks;
+  @override
+  @JsonKey()
+  List<Task> get completedTasks {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_completedTasks);
+  }
+
   @override
   String toString() {
-    return 'TaskListState(status: $status, tasks: $tasks)';
+    return 'TaskListState(status: $status, tasks: $tasks, completedTasks: $completedTasks)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Initial &&
+            other is _$_TaskListState &&
             const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks));
+            const DeepCollectionEquality().equals(other._tasks, _tasks) &&
+            const DeepCollectionEquality()
+                .equals(other._completedTasks, _completedTasks));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(_tasks));
+      const DeepCollectionEquality().hash(_tasks),
+      const DeepCollectionEquality().hash(_completedTasks));
 
   @JsonKey(ignore: true)
   @override
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
+  _$$_TaskListStateCopyWith<_$_TaskListState> get copyWith =>
+      __$$_TaskListStateCopyWithImpl<_$_TaskListState>(this, _$identity);
 }
 
-abstract class _Initial implements TaskListState {
-  const factory _Initial(
-      {final TaskListStatus status, final List<Task> tasks}) = _$_Initial;
+abstract class _TaskListState implements TaskListState {
+  const factory _TaskListState(
+      {final TaskListStatus status,
+      final List<Task> tasks,
+      final List<Task> completedTasks}) = _$_TaskListState;
 
   @override
   TaskListStatus get status => throw _privateConstructorUsedError;
   @override
   List<Task> get tasks => throw _privateConstructorUsedError;
   @override
+  List<Task> get completedTasks => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+  _$$_TaskListStateCopyWith<_$_TaskListState> get copyWith =>
       throw _privateConstructorUsedError;
 }

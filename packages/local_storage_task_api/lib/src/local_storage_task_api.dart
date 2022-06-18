@@ -15,17 +15,21 @@ class LocalStorageTaskApi extends TaskApi {
   final _taskStreamController = BehaviorSubject<List<Task>>.seeded(const []);
 
   /// Initializes the [LocalStorageTaskApi] with the given [Isar] instance.
-  Future<void> init(String path) async {
-    _isar = Isar.openSync(
-      schemas: [LocalTaskSchema],
-      directory: path,
-      inspector: true,
-    );
+  Future<void> init(String? path) async {
+    try {
+      _isar = await Isar.open(
+        schemas: [LocalTaskSchema],
+        directory: path,
+        // inspector: true,
+      );
+    } catch (e) {
+      _isar = Isar.getInstance()!;
+    }
     await _getTasks();
   }
 
   Future<void> _getTasks() async {
-    final tasks = _isar.localTasks.where().findAllSync();
+    final tasks = await _isar.localTasks.where().findAll();
     _taskStreamController.add(tasks.map((e) => e.toTask()).toList());
   }
 
@@ -60,16 +64,10 @@ class LocalStorageTaskApi extends TaskApi {
 
   @override
   Future<void> saveTask(Task task) async {
-    LocalTask? localTask;
-
-    if (task.id != null) {
-      localTask = await _isar.localTasks.get(task.id!);
-    }
-
-    localTask ??= task.toLocalTask();
+    final localTask = task.toLocalTask();
 
     await _isar.writeTxn((isar) async {
-      await isar.localTasks.put(localTask!);
+      await isar.localTasks.put(localTask);
     });
 
     await _getTasks();

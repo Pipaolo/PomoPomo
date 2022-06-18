@@ -8,13 +8,13 @@ part of 'task.dart';
 
 _$_Task _$$_TaskFromJson(Map<String, dynamic> json) => _$_Task(
       id: json['id'] as int?,
-      title: json['title'] as String,
-      content: json['content'] as String,
+      title: json['title'] as String? ?? '',
+      content: json['content'] as String? ?? '',
       priority: $enumDecodeNullable(_$TaskPriorityEnumMap, json['priority']) ??
           TaskPriority.low,
       totalPomodoroCount: json['totalPomodoroCount'] as int? ?? 1,
       pomodoroCount: json['pomodoroCount'] as int? ?? 0,
-      isCompleted: json['isCompleted'] as bool,
+      isCompleted: json['isCompleted'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_TaskToJson(_$_Task instance) => <String, dynamic>{

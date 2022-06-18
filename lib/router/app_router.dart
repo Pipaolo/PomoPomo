@@ -5,7 +5,9 @@ import 'package:pomo_pomo/pomodoro_timer/pomodoro_timer.dart';
 import 'package:pomo_pomo/pomodoro_timer_settings/pomodoro_timer_settings.dart';
 import 'package:pomo_pomo/splash/splash.dart';
 import 'package:pomo_pomo/task_create/view/view.dart';
+import 'package:pomo_pomo/task_edit/view/task_edit_page.dart';
 import 'package:pomo_pomo/task_list/task_list.dart';
+import 'package:task_api/task_api.dart';
 
 part 'app_router.gr.dart';
 
@@ -20,11 +22,15 @@ part 'app_router.gr.dart';
     ),
     AutoRoute<TaskListPage>(
       page: TaskListPage,
-      path: '/task-list',
+      path: '/task',
     ),
     AutoRoute<TaskCreatePage>(
       page: TaskCreatePage,
-      path: '/task-create',
+      path: '/task/create',
+    ),
+    AutoRoute<TaskEditPage>(
+      page: TaskEditPage,
+      path: '/task/:id/edit',
     ),
     AutoRoute<HomePage>(
       page: HomePage,

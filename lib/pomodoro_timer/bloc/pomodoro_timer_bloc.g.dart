@@ -36,6 +36,7 @@ const _$PomodoroTimerStatusEnumMap = {
   PomodoroTimerStatus.paused: 'paused',
   PomodoroTimerStatus.running: 'running',
   PomodoroTimerStatus.finished: 'finished',
+  PomodoroTimerStatus.finishedBreak: 'finishedBreak',
 };
 
 const _$PomodoroTimerModeEnumMap = {

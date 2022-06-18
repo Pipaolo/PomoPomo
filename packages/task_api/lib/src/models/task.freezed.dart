@@ -170,20 +170,22 @@ class __$$_TaskCopyWithImpl<$Res> extends _$TaskCopyWithImpl<$Res>
 class _$_Task implements _Task {
   const _$_Task(
       {this.id,
-      required this.title,
-      required this.content,
+      this.title = '',
+      this.content = '',
       this.priority = TaskPriority.low,
       this.totalPomodoroCount = 1,
       this.pomodoroCount = 0,
-      required this.isCompleted});
+      this.isCompleted = false});
 
   factory _$_Task.fromJson(Map<String, dynamic> json) => _$$_TaskFromJson(json);
 
   @override
   final int? id;
   @override
+  @JsonKey()
   final String title;
   @override
+  @JsonKey()
   final String content;
   @override
   @JsonKey()
@@ -195,6 +197,7 @@ class _$_Task implements _Task {
   @JsonKey()
   final int pomodoroCount;
   @override
+  @JsonKey()
   final bool isCompleted;
 
   @override
@@ -245,12 +248,12 @@ class _$_Task implements _Task {
 abstract class _Task implements Task {
   const factory _Task(
       {final int? id,
-      required final String title,
-      required final String content,
+      final String title,
+      final String content,
       final TaskPriority priority,
       final int totalPomodoroCount,
       final int pomodoroCount,
-      required final bool isCompleted}) = _$_Task;
+      final bool isCompleted}) = _$_Task;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$_Task.fromJson;
 

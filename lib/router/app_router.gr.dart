@@ -31,6 +31,13 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData,
           child: WrappedRoute(child: const TaskCreatePage()));
     },
+    TaskEditRoute.name: (routeData) {
+      final args = routeData.argsAs<TaskEditRouteArgs>();
+      return MaterialPageX<TaskEditPage>(
+          routeData: routeData,
+          child: WrappedRoute(
+              child: TaskEditPage(key: args.key, task: args.task)));
+    },
     HomeRoute.name: (routeData) {
       return MaterialPageX<HomePage>(
           routeData: routeData, child: WrappedRoute(child: const HomePage()));
@@ -50,8 +57,9 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig('/#redirect',
             path: '/', redirectTo: '/splash', fullMatch: true),
         RouteConfig(SplashRoute.name, path: '/splash'),
-        RouteConfig(TaskListRoute.name, path: '/task-list'),
-        RouteConfig(TaskCreateRoute.name, path: '/task-create'),
+        RouteConfig(TaskListRoute.name, path: '/task'),
+        RouteConfig(TaskCreateRoute.name, path: '/task/create'),
+        RouteConfig(TaskEditRoute.name, path: '/task/:id/edit'),
         RouteConfig(HomeRoute.name, path: '/pomodoro', children: [
           RouteConfig(PomodoroTimerRoute.name,
               path: 'timer', parent: HomeRoute.name, usesPathAsKey: true),
@@ -72,7 +80,7 @@ class SplashRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [TaskListPage]
 class TaskListRoute extends PageRouteInfo<void> {
-  const TaskListRoute() : super(TaskListRoute.name, path: '/task-list');
+  const TaskListRoute() : super(TaskListRoute.name, path: '/task');
 
   static const String name = 'TaskListRoute';
 }
@@ -80,9 +88,33 @@ class TaskListRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [TaskCreatePage]
 class TaskCreateRoute extends PageRouteInfo<void> {
-  const TaskCreateRoute() : super(TaskCreateRoute.name, path: '/task-create');
+  const TaskCreateRoute() : super(TaskCreateRoute.name, path: '/task/create');
 
   static const String name = 'TaskCreateRoute';
+}
+
+/// generated route for
+/// [TaskEditPage]
+class TaskEditRoute extends PageRouteInfo<TaskEditRouteArgs> {
+  TaskEditRoute({Key? key, required Task task})
+      : super(TaskEditRoute.name,
+            path: '/task/:id/edit',
+            args: TaskEditRouteArgs(key: key, task: task));
+
+  static const String name = 'TaskEditRoute';
+}
+
+class TaskEditRouteArgs {
+  const TaskEditRouteArgs({this.key, required this.task});
+
+  final Key? key;
+
+  final Task task;
+
+  @override
+  String toString() {
+    return 'TaskEditRouteArgs{key: $key, task: $task}';
+  }
 }
 
 /// generated route for

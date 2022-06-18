@@ -7,5 +7,6 @@ class TaskListState with _$TaskListState {
   const factory TaskListState({
     @Default(TaskListStatus.initial) TaskListStatus status,
     @Default(<Task>[]) List<Task> tasks,
-  }) = _Initial;
+    @Default(<Task>[]) List<Task> completedTasks,
+  }) = _TaskListState;
 }

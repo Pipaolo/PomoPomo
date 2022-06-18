@@ -21,12 +21,12 @@ class Task with _$Task {
   /// {@macro task}
   const factory Task({
     int? id,
-    required String title,
-    required String content,
+    @Default('') String title,
+    @Default('') String content,
     @Default(TaskPriority.low) TaskPriority priority,
     @Default(1) int totalPomodoroCount,
     @Default(0) int pomodoroCount,
-    required bool isCompleted,
+    @Default(false) bool isCompleted,
   }) = _Task;
 
   /// fromJson

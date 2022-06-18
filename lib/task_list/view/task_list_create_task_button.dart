@@ -25,10 +25,13 @@ class TaskListCreateTaskButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(FontAwesomeIcons.plus),
+            const Icon(
+              FontAwesomeIcons.plus,
+              size: 20,
+            ),
             PomoPomoSpacers.hSpacing2,
             Text(
-              'Create new task',
+              'Create Task',
               style: GoogleFonts.inter(
                 fontWeight: FontWeight.bold,
               ),

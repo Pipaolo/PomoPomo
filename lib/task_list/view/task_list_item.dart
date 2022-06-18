@@ -8,46 +8,53 @@ class TaskListItem extends StatelessWidget {
   const TaskListItem({
     super.key,
     required this.task,
+    required this.onPressed,
   });
 
   final Task task;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
+    final borderRadius = BorderRadius.circular(12);
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: borderRadius,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(PomoPomoSpacings.spacing4),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              task.title,
-              style: GoogleFonts.inter(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: borderRadius,
+        child: Padding(
+          padding: const EdgeInsets.all(PomoPomoSpacings.spacing4),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                task.title,
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
               ),
-            ),
-            const Divider(
-              height: PomoPomoSpacings.spacing4 * 2,
-            ),
-            Text(
-              task.content,
-              style: GoogleFonts.inter(
-                fontSize: 14,
+              const Divider(
+                height: PomoPomoSpacings.spacing4 * 2,
               ),
-            ),
-            PomoPomoSpacers.vSpacing4,
-            _PomodoroProgress(
-              completedPomodoros: task.pomodoroCount,
-              totalPomodoros: 24,
-              padding: const EdgeInsets.only(
-                right: PomoPomoSpacings.spacing2,
+              Text(
+                task.content,
+                style: GoogleFonts.inter(
+                  fontSize: 14,
+                ),
               ),
-            ),
-          ],
+              PomoPomoSpacers.vSpacing4,
+              _PomodoroProgress(
+                completedPomodoros: task.pomodoroCount,
+                totalPomodoros: task.totalPomodoroCount,
+                padding: const EdgeInsets.only(
+                  right: PomoPomoSpacings.spacing2,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

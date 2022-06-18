@@ -35,17 +35,28 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage>
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PomodoroTimerBloc, PomodoroTimerState>(
-      listener: (context, state) {
-        if (state.status == PomodoroTimerStatus.finished) {
-          context.read<TaskListBloc>().add(
-                const TaskListEvent.allTasksIncremented(),
-              );
-          _playFinishedSound();
-        } else if (state.status == PomodoroTimerStatus.finishedBreak) {
-          _playFinishedSound();
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<PomodoroTimerBloc, PomodoroTimerState>(
+          listener: (context, state) {
+            if (state.status == PomodoroTimerStatus.finished) {
+              _playFinishedSound();
+            } else if (state.status == PomodoroTimerStatus.finishedBreak) {
+              _playFinishedSound();
+            }
+          },
+        ),
+        BlocListener<PomodoroTimerBloc, PomodoroTimerState>(
+          listenWhen: (prev, curr) => prev.status != curr.status,
+          listener: (context, state) {
+            if (state.status == PomodoroTimerStatus.finished) {
+              context.read<TaskListBloc>().add(
+                    const TaskListEvent.allTasksIncremented(),
+                  );
+            }
+          },
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
