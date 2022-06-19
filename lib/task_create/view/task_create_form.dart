@@ -11,21 +11,25 @@ class TaskCreateForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final form = ReactiveForm.of(context) as FormGroup?;
+
     return Column(
-      children: const [
+      children: [
         _TextInputField(
+          textInputAction: TextInputAction.next,
           formControlName: 'title',
           label: 'Title',
           hintText: 'Enter title...',
+          onSubmitted: () => form?.focus('description'),
         ),
         PomoPomoSpacers.vSpacing4,
-        _TextInputField(
+        const _TextInputField(
           formControlName: 'description',
           label: 'Short Description',
           hintText: 'Enter short description...',
         ),
         PomoPomoSpacers.vSpacing4,
-        _PomodoroCountInputField()
+        const _PomodoroCountInputField()
       ],
     );
   }
@@ -127,17 +131,23 @@ class _TextInputField extends StatelessWidget {
     required this.label,
     required this.hintText,
     required this.formControlName,
+    this.textInputAction,
+    this.onSubmitted,
   });
 
   final String label;
   final String hintText;
   final String formControlName;
+  final TextInputAction? textInputAction;
+  final Function()? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
     return _FormField(
       labelText: label,
       child: ReactiveTextField<String>(
+        onSubmitted: onSubmitted,
+        textInputAction: textInputAction,
         formControlName: formControlName,
         decoration: InputDecoration(
           border: const OutlineInputBorder(
