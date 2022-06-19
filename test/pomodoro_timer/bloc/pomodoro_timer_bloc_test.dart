@@ -2,7 +2,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pomo_pomo/pomodoro_timer/bloc/pomodoro_timer_bloc.dart';
 import 'package:pomo_pomo/pomodoro_timer/pomodoro_timer.dart';
@@ -45,7 +44,7 @@ void main() {
         await tester.pumpPomodoroTimerPage(pomodoroTimerBloc);
         await tester.pumpAndSettle();
         expect(find.text('Timer'), findsOneWidget);
-        expect(find.byIcon(FontAwesomeIcons.play), findsOneWidget);
+        expect(find.text('05:00'), findsOneWidget);
       },
     );
   });

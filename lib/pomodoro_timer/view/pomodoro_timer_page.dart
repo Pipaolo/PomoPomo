@@ -18,8 +18,7 @@ class PomodoroTimerPage extends StatefulWidget {
   State<PomodoroTimerPage> createState() => _PomodoroTimerPageState();
 }
 
-class _PomodoroTimerPageState extends State<PomodoroTimerPage>
-    with AutoRouteAwareStateMixin<PomodoroTimerPage> {
+class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   Future<void> _playFinishedSound() async {
     try {
       final player = AudioPlayer(
@@ -99,10 +98,5 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage>
         ),
       ),
     );
-  }
-
-  @override
-  void didChangeTabRoute(TabPageRoute previousRoute) {
-    super.didChangeTabRoute(previousRoute);
   }
 }

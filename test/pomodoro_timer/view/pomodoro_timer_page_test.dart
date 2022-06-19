@@ -51,8 +51,12 @@ void main() {
   });
   testWidgets('timer should be decreased by 1', (tester) async {
     when(() => pomodoroTimerBloc.state).thenReturn(
-      const PomodoroTimerState(),
+      const PomodoroTimerState(
+        elapsedDuration: Duration(seconds: 1),
+      ),
     );
     await tester.pumpPomodoroTimerPage(pomodoroTimerBloc);
+    await tester.pumpAndSettle();
+    expect(find.text('04:59'), findsOneWidget);
   });
 }
