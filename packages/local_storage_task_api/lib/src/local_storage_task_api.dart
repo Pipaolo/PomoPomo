@@ -52,8 +52,9 @@ class LocalStorageTaskApi extends TaskApi {
 
   @override
   Future<void> deleteTask(int id) async {
-    await _isar.localTasks.delete(id);
-
+    await _isar.writeTxn((isar) async {
+      await isar.localTasks.delete(id);
+    });
     await _getTasks();
   }
 

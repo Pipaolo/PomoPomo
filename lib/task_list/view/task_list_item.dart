@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
@@ -9,54 +10,102 @@ class TaskListItem extends StatelessWidget {
     super.key,
     required this.task,
     required this.onPressed,
+    required this.onCompletePressed,
+    required this.onDeletePressed,
   });
 
   final Task task;
   final VoidCallback onPressed;
+  final VoidCallback onCompletePressed;
+  final VoidCallback onDeletePressed;
+
+  static final _borderRadius = BorderRadius.circular(12);
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = BorderRadius.circular(12);
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: borderRadius,
+        borderRadius: _borderRadius,
       ),
-      child: InkWell(
-        onTap: onPressed,
-        borderRadius: borderRadius,
-        child: Padding(
-          padding: const EdgeInsets.all(PomoPomoSpacings.spacing4),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                task.title,
-                style: GoogleFonts.inter(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+      child: Slidable(
+        startActionPane: _buildCompleteAction(context),
+        endActionPane: _buildRemoveAction(context),
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: _borderRadius,
+          child: Padding(
+            padding: const EdgeInsets.all(PomoPomoSpacings.spacing4),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  task.title,
+                  style: GoogleFonts.inter(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
                 ),
-              ),
-              const Divider(
-                height: PomoPomoSpacings.spacing4 * 2,
-              ),
-              Text(
-                task.content,
-                style: GoogleFonts.inter(
-                  fontSize: 14,
+                const Divider(
+                  height: PomoPomoSpacings.spacing4 * 2,
                 ),
-              ),
-              PomoPomoSpacers.vSpacing4,
-              _PomodoroProgress(
-                completedPomodoros: task.pomodoroCount,
-                totalPomodoros: task.totalPomodoroCount,
-                padding: const EdgeInsets.only(
-                  right: PomoPomoSpacings.spacing2,
+                Text(
+                  task.content,
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                  ),
                 ),
-              ),
-            ],
+                PomoPomoSpacers.vSpacing4,
+                _PomodoroProgress(
+                  completedPomodoros: task.pomodoroCount,
+                  totalPomodoros: task.totalPomodoroCount,
+                  padding: const EdgeInsets.only(
+                    right: PomoPomoSpacings.spacing2,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
+    );
+  }
+
+  ActionPane? _buildCompleteAction(BuildContext context) {
+    if (task.isCompleted) return null;
+    final colorScheme = Theme.of(context).colorScheme;
+    return ActionPane(
+      motion: const StretchMotion(),
+      dragDismissible: false,
+      children: [
+        SlidableAction(
+          label: 'Complete',
+          icon: FontAwesomeIcons.check,
+          spacing: PomoPomoSpacings.spacing4,
+          onPressed: (context) => onCompletePressed.call(),
+          foregroundColor: colorScheme.onSurfaceVariant,
+          backgroundColor: colorScheme.surfaceVariant,
+          borderRadius: _borderRadius,
+        ),
+      ],
+    );
+  }
+
+  ActionPane _buildRemoveAction(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return ActionPane(
+      motion: const StretchMotion(),
+      children: [
+        SlidableAction(
+          label: 'Remove',
+          icon: FontAwesomeIcons.trash,
+          spacing: PomoPomoSpacings.spacing4,
+          onPressed: (context) => onDeletePressed.call(),
+          foregroundColor: colorScheme.onSurfaceVariant,
+          backgroundColor: colorScheme.surfaceVariant,
+          borderRadius: _borderRadius,
+        ),
+      ],
     );
   }
 }

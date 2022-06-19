@@ -77,6 +77,16 @@ class _InProgressTaskList extends StatelessWidget {
             final task = tasks[i];
             return TaskListItem(
               task: task,
+              onCompletePressed: () {
+                context.read<TaskListBloc>().add(
+                      TaskListEvent.taskMarkAsCompleted(task),
+                    );
+              },
+              onDeletePressed: () {
+                context.read<TaskListBloc>().add(
+                      TaskListEvent.taskDeleted(task),
+                    );
+              },
               onPressed: () {
                 AutoRouter.of(context).push(
                   TaskEditRoute(task: task),
@@ -113,28 +123,22 @@ class _CompletedTaskList extends StatelessWidget {
             ),
             PomoPomoSpacers.vSpacing4,
             ...tasks.map(
-              (t) => TaskListItem(
-                task: t,
-                onPressed: () {},
+              (task) => TaskListItem(
+                task: task,
+                onCompletePressed: () {},
+                onDeletePressed: () {
+                  context.read<TaskListBloc>().add(
+                        TaskListEvent.taskDeleted(task),
+                      );
+                },
+                onPressed: () => AutoRouter.of(context).push(
+                  TaskEditRoute(task: task),
+                ),
               ),
             ),
           ],
         ),
       ),
     );
-    // return SliverList(
-    //   delegate: SliverChildBuilderDelegate(
-    //     (context, i) {
-    //       final task = tasks[i];
-    //       return Padding(
-    //         padding: const EdgeInsets.all(
-    //           PomoPomoSpacings.spacing4,
-    //         ),
-    //         child: TaskListItem(task: task),
-    //       );
-    //     },
-    //     childCount: tasks.length,
-    //   ),
-    // );
   }
 }
