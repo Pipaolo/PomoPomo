@@ -27,7 +27,7 @@ class PomodoroTimerBloc
 
   Timer? _timer;
 
-  static const _duration = Duration(seconds: 10);
+  static const _duration = Duration(seconds: 1);
 
   @override
   Future<void> close() async {
@@ -47,8 +47,7 @@ class PomodoroTimerBloc
   ) async {
     _timer = Timer.periodic(
       const Duration(
-        // seconds: 1,
-        milliseconds: 300,
+        seconds: 1,
       ),
       _onTick,
     );
