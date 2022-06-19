@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:pomo_pomo/pomodoro_timer/bloc/pomodoro_timer_bloc.dart';
 import 'package:pomo_pomo/pomodoro_timer/pomodoro_timer.dart';
 
 class MockPomodoroTimerBloc

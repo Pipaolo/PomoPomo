@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pomo_pomo/pomodoro_timer/bloc/pomodoro_timer_bloc.dart';
-import 'package:pomo_pomo/pomodoro_timer/pomodoro_timer.dart';
+import 'package:pomo_pomo/pomodoro_timer/widgets/widgets.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 
 class PomodoroTimerClock extends StatelessWidget {
