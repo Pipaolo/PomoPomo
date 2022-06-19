@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomo_pomo/task_edit/bloc/task_edit_bloc.dart';
-import 'package:pomo_pomo/task_edit/task_edit.dart';
+import 'package:pomo_pomo/task_edit/widgets/widgets.dart';
+
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:task_api/task_api.dart';
