@@ -36,13 +36,18 @@ class HomePage extends StatefulWidget implements AutoRouteWrapper {
 
 class _HomePageState extends State<HomePage> {
   bool isFabVisible = false;
+  String currentRoute = '';
 
   Future<void> _toggleFab(String routeName) async {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        isFabVisible = routeName == PomodoroTimerRoute.name;
+        currentRoute = routeName;
       });
     });
+  }
+
+  bool _isFabVisible() {
+    return currentRoute == PomodoroTimerRoute.name;
   }
 
   @override
@@ -53,7 +58,11 @@ class _HomePageState extends State<HomePage> {
         PomodoroTimerSettingsRoute(),
       ],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: isFabVisible ? const HomeFab() : null,
+      floatingActionButton: _isFabVisible()
+          ? HomeFab(
+              routeName: currentRoute,
+            )
+          : null,
       navigatorObservers: () => [
         HomeObserver(onRouteChanged: _toggleFab),
       ],
