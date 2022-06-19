@@ -14,6 +14,11 @@ class TaskRepository {
   /// Provides a [Stream] of [Task]s.
   Stream<List<Task>> getTasks() => _taskApi.getTasks();
 
+  /// Gets a [Task] by its [id].
+  ///
+  /// [TaskNotFoundException] is thrown if the task is not found
+  Future<Task> getTask(int id) => _taskApi.getTask(id);
+
   /// Saves a [Task]
   ///
   /// If a [Task] with the same id already exists, it will be updated.

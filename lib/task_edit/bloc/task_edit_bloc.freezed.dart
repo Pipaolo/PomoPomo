@@ -18,32 +18,38 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TaskEditEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int? id) initialTaskLoaded,
     required TResult Function() submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int? id)? initialTaskLoaded,
     TResult Function()? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int? id)? initialTaskLoaded,
     TResult Function()? submitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_InitialTaskLoaded value) initialTaskLoaded,
     required TResult Function(_Submitted value) submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InitialTaskLoaded value)? initialTaskLoaded,
     TResult Function(_Submitted value)? submitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialTaskLoaded value)? initialTaskLoaded,
     TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) =>
@@ -65,6 +71,141 @@ class _$TaskEditEventCopyWithImpl<$Res>
   final TaskEditEvent _value;
   // ignore: unused_field
   final $Res Function(TaskEditEvent) _then;
+}
+
+/// @nodoc
+abstract class _$$_InitialTaskLoadedCopyWith<$Res> {
+  factory _$$_InitialTaskLoadedCopyWith(_$_InitialTaskLoaded value,
+          $Res Function(_$_InitialTaskLoaded) then) =
+      __$$_InitialTaskLoadedCopyWithImpl<$Res>;
+  $Res call({int? id});
+}
+
+/// @nodoc
+class __$$_InitialTaskLoadedCopyWithImpl<$Res>
+    extends _$TaskEditEventCopyWithImpl<$Res>
+    implements _$$_InitialTaskLoadedCopyWith<$Res> {
+  __$$_InitialTaskLoadedCopyWithImpl(
+      _$_InitialTaskLoaded _value, $Res Function(_$_InitialTaskLoaded) _then)
+      : super(_value, (v) => _then(v as _$_InitialTaskLoaded));
+
+  @override
+  _$_InitialTaskLoaded get _value => super._value as _$_InitialTaskLoaded;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(_$_InitialTaskLoaded(
+      id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_InitialTaskLoaded implements _InitialTaskLoaded {
+  const _$_InitialTaskLoaded(this.id);
+
+  @override
+  final int? id;
+
+  @override
+  String toString() {
+    return 'TaskEditEvent.initialTaskLoaded(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_InitialTaskLoaded &&
+            const DeepCollectionEquality().equals(other.id, id));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(id));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_InitialTaskLoadedCopyWith<_$_InitialTaskLoaded> get copyWith =>
+      __$$_InitialTaskLoadedCopyWithImpl<_$_InitialTaskLoaded>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int? id) initialTaskLoaded,
+    required TResult Function() submitted,
+  }) {
+    return initialTaskLoaded(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int? id)? initialTaskLoaded,
+    TResult Function()? submitted,
+  }) {
+    return initialTaskLoaded?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int? id)? initialTaskLoaded,
+    TResult Function()? submitted,
+    required TResult orElse(),
+  }) {
+    if (initialTaskLoaded != null) {
+      return initialTaskLoaded(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InitialTaskLoaded value) initialTaskLoaded,
+    required TResult Function(_Submitted value) submitted,
+  }) {
+    return initialTaskLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InitialTaskLoaded value)? initialTaskLoaded,
+    TResult Function(_Submitted value)? submitted,
+  }) {
+    return initialTaskLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialTaskLoaded value)? initialTaskLoaded,
+    TResult Function(_Submitted value)? submitted,
+    required TResult orElse(),
+  }) {
+    if (initialTaskLoaded != null) {
+      return initialTaskLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitialTaskLoaded implements TaskEditEvent {
+  const factory _InitialTaskLoaded(final int? id) = _$_InitialTaskLoaded;
+
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_InitialTaskLoadedCopyWith<_$_InitialTaskLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -107,6 +248,7 @@ class _$_Submitted implements _Submitted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int? id) initialTaskLoaded,
     required TResult Function() submitted,
   }) {
     return submitted();
@@ -115,6 +257,7 @@ class _$_Submitted implements _Submitted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int? id)? initialTaskLoaded,
     TResult Function()? submitted,
   }) {
     return submitted?.call();
@@ -123,6 +266,7 @@ class _$_Submitted implements _Submitted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int? id)? initialTaskLoaded,
     TResult Function()? submitted,
     required TResult orElse(),
   }) {
@@ -135,6 +279,7 @@ class _$_Submitted implements _Submitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_InitialTaskLoaded value) initialTaskLoaded,
     required TResult Function(_Submitted value) submitted,
   }) {
     return submitted(this);
@@ -143,6 +288,7 @@ class _$_Submitted implements _Submitted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_InitialTaskLoaded value)? initialTaskLoaded,
     TResult Function(_Submitted value)? submitted,
   }) {
     return submitted?.call(this);
@@ -151,6 +297,7 @@ class _$_Submitted implements _Submitted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InitialTaskLoaded value)? initialTaskLoaded,
     TResult Function(_Submitted value)? submitted,
     required TResult orElse(),
   }) {

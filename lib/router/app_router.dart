@@ -7,7 +7,6 @@ import 'package:pomo_pomo/splash/splash.dart';
 import 'package:pomo_pomo/task_create/view/view.dart';
 import 'package:pomo_pomo/task_edit/view/task_edit_page.dart';
 import 'package:pomo_pomo/task_list/task_list.dart';
-import 'package:task_api/task_api.dart';
 
 part 'app_router.gr.dart';
 
@@ -21,12 +20,12 @@ part 'app_router.gr.dart';
       path: '/splash',
     ),
     AutoRoute<TaskListPage>(
-      page: TaskListPage,
       path: '/task',
+      page: TaskListPage,
     ),
     AutoRoute<TaskCreatePage>(
-      page: TaskCreatePage,
       path: '/task/create',
+      page: TaskCreatePage,
     ),
     AutoRoute<TaskEditPage>(
       page: TaskEditPage,

@@ -112,7 +112,7 @@ class _InProgressTaskList extends StatelessWidget {
               },
               onPressed: () {
                 AutoRouter.of(context).push(
-                  TaskEditRoute(task: task),
+                  TaskEditRoute(taskId: task.id!),
                 );
               },
             );
@@ -155,7 +155,7 @@ class _CompletedTaskList extends StatelessWidget {
                       );
                 },
                 onPressed: () => AutoRouter.of(context).push(
-                  TaskEditRoute(task: task),
+                  TaskEditRoute(taskId: task.id!),
                 ),
               ),
             ),

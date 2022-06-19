@@ -32,11 +32,13 @@ class _$AppRouter extends RootStackRouter {
           child: WrappedRoute(child: const TaskCreatePage()));
     },
     TaskEditRoute.name: (routeData) {
-      final args = routeData.argsAs<TaskEditRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<TaskEditRouteArgs>(
+          orElse: () => TaskEditRouteArgs(taskId: pathParams.getInt('id')));
       return MaterialPageX<TaskEditPage>(
           routeData: routeData,
           child: WrappedRoute(
-              child: TaskEditPage(key: args.key, task: args.task)));
+              child: TaskEditPage(key: args.key, taskId: args.taskId)));
     },
     HomeRoute.name: (routeData) {
       return MaterialPageX<HomePage>(
@@ -96,24 +98,25 @@ class TaskCreateRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [TaskEditPage]
 class TaskEditRoute extends PageRouteInfo<TaskEditRouteArgs> {
-  TaskEditRoute({Key? key, required Task task})
+  TaskEditRoute({Key? key, required int taskId})
       : super(TaskEditRoute.name,
             path: '/task/:id/edit',
-            args: TaskEditRouteArgs(key: key, task: task));
+            args: TaskEditRouteArgs(key: key, taskId: taskId),
+            rawPathParams: {'id': taskId});
 
   static const String name = 'TaskEditRoute';
 }
 
 class TaskEditRouteArgs {
-  const TaskEditRouteArgs({this.key, required this.task});
+  const TaskEditRouteArgs({this.key, required this.taskId});
 
   final Key? key;
 
-  final Task task;
+  final int taskId;
 
   @override
   String toString() {
-    return 'TaskEditRouteArgs{key: $key, task: $task}';
+    return 'TaskEditRouteArgs{key: $key, taskId: $taskId}';
   }
 }
 

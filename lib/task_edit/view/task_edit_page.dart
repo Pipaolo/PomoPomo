@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomo_pomo/task_edit/bloc/task_edit_bloc.dart';
-import 'package:pomo_pomo/task_edit/widgets/widgets.dart';
-
+import 'package:pomo_pomo/task_edit/widgets/task_edit_form.dart';
+import 'package:pomo_pomo/task_edit/widgets/task_edit_submit_button.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:task_api/task_api.dart';
+
 import 'package:task_repository/task_repository.dart';
 
 class TaskEditPage extends StatelessWidget implements AutoRouteWrapper {
   const TaskEditPage({
     super.key,
-    required this.task,
+    @PathParam('id') required this.taskId,
   });
 
-  final Task task;
+  final int taskId;
 
   @override
   Widget build(BuildContext context) {
@@ -25,25 +25,29 @@ class TaskEditPage extends StatelessWidget implements AutoRouteWrapper {
     if (form == null) return const Scaffold();
 
     return BlocListener<TaskEditBloc, TaskEditState>(
+      listenWhen: (curr, prev) =>
+          prev.status != curr.status && curr.initialTask != null,
       listener: (context, state) {
         final messenger = ScaffoldMessenger.of(context);
+        final task = state.initialTask!;
+
         switch (state.status) {
           case TaskEditStatus.initial:
           case TaskEditStatus.loading:
             break;
           case TaskEditStatus.success:
-            messenger.showSnackBar(
-              SnackBar(
-                content: Text(
-                  'You have successfully editted: ${task.title}',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onSurface,
-                    fontWeight: FontWeight.bold,
+            messenger
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'You have successfully editted: ${task.title}',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 ),
-                backgroundColor: Theme.of(context).colorScheme.surface,
-              ),
-            );
+              );
             AutoRouter.of(context).pop();
             break;
           case TaskEditStatus.failure:
@@ -68,11 +72,22 @@ class TaskEditPage extends StatelessWidget implements AutoRouteWrapper {
               ),
             ),
           ),
-          body: Container(
-            padding: const EdgeInsets.all(
-              PomoPomoSpacings.spacing4,
-            ),
-            child: const TaskEditForm(),
+          body: BlocBuilder<TaskEditBloc, TaskEditState>(
+            buildWhen: (prev, curr) => prev.initialTask != curr.initialTask,
+            builder: (context, state) {
+              final task = state.initialTask;
+              if (task == null) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return Container(
+                padding: const EdgeInsets.all(
+                  PomoPomoSpacings.spacing4,
+                ),
+                child: const TaskEditForm(),
+              );
+            },
           ),
           bottomNavigationBar: const TaskEditSubmitButton(),
         ),
@@ -86,8 +101,9 @@ class TaskEditPage extends StatelessWidget implements AutoRouteWrapper {
       child: this,
       create: (context) => TaskEditBloc(
         taskRepository: context.read<TaskRepository>(),
-        initialTask: task,
-      ),
+      )..add(
+          TaskEditEvent.initialTaskLoaded(taskId),
+        ),
     );
   }
 }

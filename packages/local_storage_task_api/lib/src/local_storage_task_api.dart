@@ -94,4 +94,13 @@ class LocalStorageTaskApi extends TaskApi {
     await _getTasks();
     return count;
   }
+
+  @override
+  Future<Task> getTask(int id) async {
+    final localTask = await _isar.localTasks.get(id);
+    if (localTask == null) {
+      throw TaskNotFoundException();
+    }
+    return localTask.toTask();
+  }
 }

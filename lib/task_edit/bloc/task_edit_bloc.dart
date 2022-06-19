@@ -33,15 +33,12 @@ FormGroup _buildForm(Task task) {
 
 class TaskEditBloc extends Bloc<TaskEditEvent, TaskEditState> {
   TaskEditBloc({
-    required Task? initialTask,
     required TaskRepository taskRepository,
   })  : _taskRepository = taskRepository,
         super(
-          _TaskEditState(
-            initialTask: initialTask,
-            form: _buildForm(initialTask ?? const Task()),
-          ),
+          const _TaskEditState(),
         ) {
+    on<_InitialTaskLoaded>(_onInitialTaskLoaded);
     on<_Submitted>(_onSubmitted);
   }
   final TaskRepository _taskRepository;
@@ -83,6 +80,28 @@ class TaskEditBloc extends Bloc<TaskEditEvent, TaskEditState> {
       );
     } catch (e) {
       log(e.toString());
+      emit(
+        state.copyWith(
+          status: TaskEditStatus.failure,
+        ),
+      );
+    }
+  }
+
+  FutureOr<void> _onInitialTaskLoaded(
+    _InitialTaskLoaded event,
+    Emitter<TaskEditState> emit,
+  ) async {
+    try {
+      final initialTask = await _taskRepository.getTask(event.id!);
+      emit(
+        state.copyWith(
+          status: TaskEditStatus.success,
+          initialTask: initialTask,
+          form: _buildForm(initialTask),
+        ),
+      );
+    } catch (e) {
       emit(
         state.copyWith(
           status: TaskEditStatus.failure,
