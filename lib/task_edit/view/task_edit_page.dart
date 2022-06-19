@@ -32,8 +32,15 @@ class TaskEditPage extends StatelessWidget implements AutoRouteWrapper {
             break;
           case TaskEditStatus.success:
             messenger.showSnackBar(
-              const SnackBar(
-                content: Text('Successfully editted task'),
+              SnackBar(
+                content: Text(
+                  'You have successfully editted: ${task.title}',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                backgroundColor: Theme.of(context).colorScheme.surface,
               ),
             );
             AutoRouter.of(context).pop();

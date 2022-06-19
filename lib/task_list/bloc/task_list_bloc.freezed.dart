@@ -19,6 +19,8 @@ mixin _$TaskListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(Task task) taskMarkAsCompleted,
+    required TResult Function(Task task) taskDeleted,
     required TResult Function() allTasksIncremented,
     required TResult Function() subscriptionRequested,
   }) =>
@@ -26,6 +28,8 @@ mixin _$TaskListEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
   }) =>
@@ -33,6 +37,8 @@ mixin _$TaskListEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
     required TResult orElse(),
@@ -41,6 +47,8 @@ mixin _$TaskListEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
+    required TResult Function(_TaskDeleted value) taskDeleted,
     required TResult Function(_AllTasksIncremented value) allTasksIncremented,
     required TResult Function(_SubscriptionRequested value)
         subscriptionRequested,
@@ -49,6 +57,8 @@ mixin _$TaskListEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
   }) =>
@@ -56,6 +66,8 @@ mixin _$TaskListEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
     required TResult orElse(),
@@ -120,6 +132,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(Task task) taskMarkAsCompleted,
+    required TResult Function(Task task) taskDeleted,
     required TResult Function() allTasksIncremented,
     required TResult Function() subscriptionRequested,
   }) {
@@ -130,6 +144,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
   }) {
@@ -140,6 +156,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
     required TResult orElse(),
@@ -154,6 +172,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
+    required TResult Function(_TaskDeleted value) taskDeleted,
     required TResult Function(_AllTasksIncremented value) allTasksIncremented,
     required TResult Function(_SubscriptionRequested value)
         subscriptionRequested,
@@ -165,6 +185,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
   }) {
@@ -175,6 +197,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
     required TResult orElse(),
@@ -188,6 +212,331 @@ class _$_Started implements _Started {
 
 abstract class _Started implements TaskListEvent {
   const factory _Started() = _$_Started;
+}
+
+/// @nodoc
+abstract class _$$_TaskMarkAsCompletedCopyWith<$Res> {
+  factory _$$_TaskMarkAsCompletedCopyWith(_$_TaskMarkAsCompleted value,
+          $Res Function(_$_TaskMarkAsCompleted) then) =
+      __$$_TaskMarkAsCompletedCopyWithImpl<$Res>;
+  $Res call({Task task});
+
+  $TaskCopyWith<$Res> get task;
+}
+
+/// @nodoc
+class __$$_TaskMarkAsCompletedCopyWithImpl<$Res>
+    extends _$TaskListEventCopyWithImpl<$Res>
+    implements _$$_TaskMarkAsCompletedCopyWith<$Res> {
+  __$$_TaskMarkAsCompletedCopyWithImpl(_$_TaskMarkAsCompleted _value,
+      $Res Function(_$_TaskMarkAsCompleted) _then)
+      : super(_value, (v) => _then(v as _$_TaskMarkAsCompleted));
+
+  @override
+  _$_TaskMarkAsCompleted get _value => super._value as _$_TaskMarkAsCompleted;
+
+  @override
+  $Res call({
+    Object? task = freezed,
+  }) {
+    return _then(_$_TaskMarkAsCompleted(
+      task == freezed
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as Task,
+    ));
+  }
+
+  @override
+  $TaskCopyWith<$Res> get task {
+    return $TaskCopyWith<$Res>(_value.task, (value) {
+      return _then(_value.copyWith(task: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_TaskMarkAsCompleted implements _TaskMarkAsCompleted {
+  const _$_TaskMarkAsCompleted(this.task);
+
+  @override
+  final Task task;
+
+  @override
+  String toString() {
+    return 'TaskListEvent.taskMarkAsCompleted(task: $task)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TaskMarkAsCompleted &&
+            const DeepCollectionEquality().equals(other.task, task));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(task));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_TaskMarkAsCompletedCopyWith<_$_TaskMarkAsCompleted> get copyWith =>
+      __$$_TaskMarkAsCompletedCopyWithImpl<_$_TaskMarkAsCompleted>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Task task) taskMarkAsCompleted,
+    required TResult Function(Task task) taskDeleted,
+    required TResult Function() allTasksIncremented,
+    required TResult Function() subscriptionRequested,
+  }) {
+    return taskMarkAsCompleted(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
+    TResult Function()? allTasksIncremented,
+    TResult Function()? subscriptionRequested,
+  }) {
+    return taskMarkAsCompleted?.call(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
+    TResult Function()? allTasksIncremented,
+    TResult Function()? subscriptionRequested,
+    required TResult orElse(),
+  }) {
+    if (taskMarkAsCompleted != null) {
+      return taskMarkAsCompleted(task);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_AllTasksIncremented value) allTasksIncremented,
+    required TResult Function(_SubscriptionRequested value)
+        subscriptionRequested,
+  }) {
+    return taskMarkAsCompleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_AllTasksIncremented value)? allTasksIncremented,
+    TResult Function(_SubscriptionRequested value)? subscriptionRequested,
+  }) {
+    return taskMarkAsCompleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_AllTasksIncremented value)? allTasksIncremented,
+    TResult Function(_SubscriptionRequested value)? subscriptionRequested,
+    required TResult orElse(),
+  }) {
+    if (taskMarkAsCompleted != null) {
+      return taskMarkAsCompleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TaskMarkAsCompleted implements TaskListEvent {
+  const factory _TaskMarkAsCompleted(final Task task) = _$_TaskMarkAsCompleted;
+
+  Task get task => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_TaskMarkAsCompletedCopyWith<_$_TaskMarkAsCompleted> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_TaskDeletedCopyWith<$Res> {
+  factory _$$_TaskDeletedCopyWith(
+          _$_TaskDeleted value, $Res Function(_$_TaskDeleted) then) =
+      __$$_TaskDeletedCopyWithImpl<$Res>;
+  $Res call({Task task});
+
+  $TaskCopyWith<$Res> get task;
+}
+
+/// @nodoc
+class __$$_TaskDeletedCopyWithImpl<$Res>
+    extends _$TaskListEventCopyWithImpl<$Res>
+    implements _$$_TaskDeletedCopyWith<$Res> {
+  __$$_TaskDeletedCopyWithImpl(
+      _$_TaskDeleted _value, $Res Function(_$_TaskDeleted) _then)
+      : super(_value, (v) => _then(v as _$_TaskDeleted));
+
+  @override
+  _$_TaskDeleted get _value => super._value as _$_TaskDeleted;
+
+  @override
+  $Res call({
+    Object? task = freezed,
+  }) {
+    return _then(_$_TaskDeleted(
+      task == freezed
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as Task,
+    ));
+  }
+
+  @override
+  $TaskCopyWith<$Res> get task {
+    return $TaskCopyWith<$Res>(_value.task, (value) {
+      return _then(_value.copyWith(task: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_TaskDeleted implements _TaskDeleted {
+  const _$_TaskDeleted(this.task);
+
+  @override
+  final Task task;
+
+  @override
+  String toString() {
+    return 'TaskListEvent.taskDeleted(task: $task)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TaskDeleted &&
+            const DeepCollectionEquality().equals(other.task, task));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(task));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_TaskDeletedCopyWith<_$_TaskDeleted> get copyWith =>
+      __$$_TaskDeletedCopyWithImpl<_$_TaskDeleted>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Task task) taskMarkAsCompleted,
+    required TResult Function(Task task) taskDeleted,
+    required TResult Function() allTasksIncremented,
+    required TResult Function() subscriptionRequested,
+  }) {
+    return taskDeleted(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
+    TResult Function()? allTasksIncremented,
+    TResult Function()? subscriptionRequested,
+  }) {
+    return taskDeleted?.call(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
+    TResult Function()? allTasksIncremented,
+    TResult Function()? subscriptionRequested,
+    required TResult orElse(),
+  }) {
+    if (taskDeleted != null) {
+      return taskDeleted(task);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_AllTasksIncremented value) allTasksIncremented,
+    required TResult Function(_SubscriptionRequested value)
+        subscriptionRequested,
+  }) {
+    return taskDeleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_AllTasksIncremented value)? allTasksIncremented,
+    TResult Function(_SubscriptionRequested value)? subscriptionRequested,
+  }) {
+    return taskDeleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_AllTasksIncremented value)? allTasksIncremented,
+    TResult Function(_SubscriptionRequested value)? subscriptionRequested,
+    required TResult orElse(),
+  }) {
+    if (taskDeleted != null) {
+      return taskDeleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TaskDeleted implements TaskListEvent {
+  const factory _TaskDeleted(final Task task) = _$_TaskDeleted;
+
+  Task get task => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_TaskDeletedCopyWith<_$_TaskDeleted> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -232,6 +581,8 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(Task task) taskMarkAsCompleted,
+    required TResult Function(Task task) taskDeleted,
     required TResult Function() allTasksIncremented,
     required TResult Function() subscriptionRequested,
   }) {
@@ -242,6 +593,8 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
   }) {
@@ -252,6 +605,8 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
     required TResult orElse(),
@@ -266,6 +621,8 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
+    required TResult Function(_TaskDeleted value) taskDeleted,
     required TResult Function(_AllTasksIncremented value) allTasksIncremented,
     required TResult Function(_SubscriptionRequested value)
         subscriptionRequested,
@@ -277,6 +634,8 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
   }) {
@@ -287,6 +646,8 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
     required TResult orElse(),
@@ -345,6 +706,8 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(Task task) taskMarkAsCompleted,
+    required TResult Function(Task task) taskDeleted,
     required TResult Function() allTasksIncremented,
     required TResult Function() subscriptionRequested,
   }) {
@@ -355,6 +718,8 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
   }) {
@@ -365,6 +730,8 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
     required TResult orElse(),
@@ -379,6 +746,8 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
+    required TResult Function(_TaskDeleted value) taskDeleted,
     required TResult Function(_AllTasksIncremented value) allTasksIncremented,
     required TResult Function(_SubscriptionRequested value)
         subscriptionRequested,
@@ -390,6 +759,8 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
   }) {
@@ -400,6 +771,8 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
     required TResult orElse(),

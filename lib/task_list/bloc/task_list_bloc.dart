@@ -16,6 +16,8 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
       : _taskRepository = taskRepository,
         super(const _TaskListState()) {
     on<_SubscriptionRequested>(_onSubscriptionRequested);
+    on<_TaskMarkAsCompleted>(_onTaskMarkAsCompleted);
+    on<_TaskDeleted>(_onTaskDeleted);
     on<_AllTasksIncremented>(_onAllTasksIncremented);
   }
   final TaskRepository _taskRepository;
@@ -53,5 +55,25 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
     } catch (e) {
       log('Failed to increment all tasks pomodoro count: $e');
     }
+  }
+
+  FutureOr<void> _onTaskMarkAsCompleted(
+    _TaskMarkAsCompleted event,
+    Emitter<TaskListState> emit,
+  ) async {
+    final task = event.task;
+    await _taskRepository.saveTask(
+      task.copyWith(
+        pomodoroCount: task.totalPomodoroCount,
+        isCompleted: true,
+      ),
+    );
+  }
+
+  FutureOr<void> _onTaskDeleted(
+    _TaskDeleted event,
+    Emitter<TaskListState> emit,
+  ) async {
+    await _taskRepository.deleteTodo(event.task.id!);
   }
 }
