@@ -114,13 +114,12 @@ class _PomodoroProgress extends StatelessWidget {
   const _PomodoroProgress({
     this.completedPomodoros = 1,
     this.totalPomodoros = 4,
-    this.iconSize = 22,
     this.padding = EdgeInsets.zero,
   });
   final int totalPomodoros;
   final int completedPomodoros;
 
-  final double iconSize;
+  static const double iconSize = 22;
   final EdgeInsets padding;
 
   Widget _buildIcon(
