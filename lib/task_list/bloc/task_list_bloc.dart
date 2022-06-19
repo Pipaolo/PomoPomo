@@ -18,6 +18,7 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
     on<_SubscriptionRequested>(_onSubscriptionRequested);
     on<_TaskMarkAsCompleted>(_onTaskMarkAsCompleted);
     on<_TaskDeleted>(_onTaskDeleted);
+    on<_UndoDeletionRequested>(_onUndoDeletionRequested);
     on<_AllTasksIncremented>(_onAllTasksIncremented);
   }
   final TaskRepository _taskRepository;
@@ -74,6 +75,26 @@ class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
     _TaskDeleted event,
     Emitter<TaskListState> emit,
   ) async {
+    emit(
+      state.copyWith(
+        lastDeletedTask: event.task,
+      ),
+    );
     await _taskRepository.deleteTodo(event.task.id!);
+  }
+
+  FutureOr<void> _onUndoDeletionRequested(
+    _UndoDeletionRequested event,
+    Emitter<TaskListState> emit,
+  ) async {
+    assert(state.lastDeletedTask != null, 'Last deleted task can not be null.');
+    final task = state.lastDeletedTask!;
+    emit(
+      state.copyWith(
+        lastDeletedTask: null,
+      ),
+    );
+
+    await _taskRepository.saveTask(task);
   }
 }

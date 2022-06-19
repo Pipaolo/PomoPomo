@@ -31,10 +31,17 @@ class PomoPomoTheme {
         textTheme: GoogleFonts.interTextTheme(),
       );
     }
+    final colorScheme = customTheme.colorScheme;
     return customTheme.copyWith(
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(64, 48),
+        ),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: colorScheme.surfaceVariant,
+        contentTextStyle: GoogleFonts.inter(
+          color: colorScheme.onSurfaceVariant,
         ),
       ),
       textTheme: GoogleFonts.interTextTheme(
