@@ -6,6 +6,7 @@ class TaskListEvent with _$TaskListEvent {
   const factory TaskListEvent.taskMarkAsCompleted(Task task) =
       _TaskMarkAsCompleted;
   const factory TaskListEvent.taskDeleted(Task task) = _TaskDeleted;
+  const factory TaskListEvent.undoDeletionRequested() = _UndoDeletionRequested;
   const factory TaskListEvent.allTasksIncremented() = _AllTasksIncremented;
   const factory TaskListEvent.subscriptionRequested() = _SubscriptionRequested;
 }

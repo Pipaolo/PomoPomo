@@ -21,6 +21,7 @@ mixin _$TaskListEvent {
     required TResult Function() started,
     required TResult Function(Task task) taskMarkAsCompleted,
     required TResult Function(Task task) taskDeleted,
+    required TResult Function() undoDeletionRequested,
     required TResult Function() allTasksIncremented,
     required TResult Function() subscriptionRequested,
   }) =>
@@ -30,6 +31,7 @@ mixin _$TaskListEvent {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
   }) =>
@@ -39,6 +41,7 @@ mixin _$TaskListEvent {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
     required TResult orElse(),
@@ -49,6 +52,8 @@ mixin _$TaskListEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_UndoDeletionRequested value)
+        undoDeletionRequested,
     required TResult Function(_AllTasksIncremented value) allTasksIncremented,
     required TResult Function(_SubscriptionRequested value)
         subscriptionRequested,
@@ -59,6 +64,7 @@ mixin _$TaskListEvent {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
   }) =>
@@ -68,6 +74,7 @@ mixin _$TaskListEvent {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
     required TResult orElse(),
@@ -134,6 +141,7 @@ class _$_Started implements _Started {
     required TResult Function() started,
     required TResult Function(Task task) taskMarkAsCompleted,
     required TResult Function(Task task) taskDeleted,
+    required TResult Function() undoDeletionRequested,
     required TResult Function() allTasksIncremented,
     required TResult Function() subscriptionRequested,
   }) {
@@ -146,6 +154,7 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
   }) {
@@ -158,6 +167,7 @@ class _$_Started implements _Started {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
     required TResult orElse(),
@@ -174,6 +184,8 @@ class _$_Started implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_UndoDeletionRequested value)
+        undoDeletionRequested,
     required TResult Function(_AllTasksIncremented value) allTasksIncremented,
     required TResult Function(_SubscriptionRequested value)
         subscriptionRequested,
@@ -187,6 +199,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
   }) {
@@ -199,6 +212,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
     required TResult orElse(),
@@ -292,6 +306,7 @@ class _$_TaskMarkAsCompleted implements _TaskMarkAsCompleted {
     required TResult Function() started,
     required TResult Function(Task task) taskMarkAsCompleted,
     required TResult Function(Task task) taskDeleted,
+    required TResult Function() undoDeletionRequested,
     required TResult Function() allTasksIncremented,
     required TResult Function() subscriptionRequested,
   }) {
@@ -304,6 +319,7 @@ class _$_TaskMarkAsCompleted implements _TaskMarkAsCompleted {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
   }) {
@@ -316,6 +332,7 @@ class _$_TaskMarkAsCompleted implements _TaskMarkAsCompleted {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
     required TResult orElse(),
@@ -332,6 +349,8 @@ class _$_TaskMarkAsCompleted implements _TaskMarkAsCompleted {
     required TResult Function(_Started value) started,
     required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_UndoDeletionRequested value)
+        undoDeletionRequested,
     required TResult Function(_AllTasksIncremented value) allTasksIncremented,
     required TResult Function(_SubscriptionRequested value)
         subscriptionRequested,
@@ -345,6 +364,7 @@ class _$_TaskMarkAsCompleted implements _TaskMarkAsCompleted {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
   }) {
@@ -357,6 +377,7 @@ class _$_TaskMarkAsCompleted implements _TaskMarkAsCompleted {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
     required TResult orElse(),
@@ -454,6 +475,7 @@ class _$_TaskDeleted implements _TaskDeleted {
     required TResult Function() started,
     required TResult Function(Task task) taskMarkAsCompleted,
     required TResult Function(Task task) taskDeleted,
+    required TResult Function() undoDeletionRequested,
     required TResult Function() allTasksIncremented,
     required TResult Function() subscriptionRequested,
   }) {
@@ -466,6 +488,7 @@ class _$_TaskDeleted implements _TaskDeleted {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
   }) {
@@ -478,6 +501,7 @@ class _$_TaskDeleted implements _TaskDeleted {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
     required TResult orElse(),
@@ -494,6 +518,8 @@ class _$_TaskDeleted implements _TaskDeleted {
     required TResult Function(_Started value) started,
     required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_UndoDeletionRequested value)
+        undoDeletionRequested,
     required TResult Function(_AllTasksIncremented value) allTasksIncremented,
     required TResult Function(_SubscriptionRequested value)
         subscriptionRequested,
@@ -507,6 +533,7 @@ class _$_TaskDeleted implements _TaskDeleted {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
   }) {
@@ -519,6 +546,7 @@ class _$_TaskDeleted implements _TaskDeleted {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
     required TResult orElse(),
@@ -537,6 +565,138 @@ abstract class _TaskDeleted implements TaskListEvent {
   @JsonKey(ignore: true)
   _$$_TaskDeletedCopyWith<_$_TaskDeleted> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UndoDeletionRequestedCopyWith<$Res> {
+  factory _$$_UndoDeletionRequestedCopyWith(_$_UndoDeletionRequested value,
+          $Res Function(_$_UndoDeletionRequested) then) =
+      __$$_UndoDeletionRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_UndoDeletionRequestedCopyWithImpl<$Res>
+    extends _$TaskListEventCopyWithImpl<$Res>
+    implements _$$_UndoDeletionRequestedCopyWith<$Res> {
+  __$$_UndoDeletionRequestedCopyWithImpl(_$_UndoDeletionRequested _value,
+      $Res Function(_$_UndoDeletionRequested) _then)
+      : super(_value, (v) => _then(v as _$_UndoDeletionRequested));
+
+  @override
+  _$_UndoDeletionRequested get _value =>
+      super._value as _$_UndoDeletionRequested;
+}
+
+/// @nodoc
+
+class _$_UndoDeletionRequested implements _UndoDeletionRequested {
+  const _$_UndoDeletionRequested();
+
+  @override
+  String toString() {
+    return 'TaskListEvent.undoDeletionRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_UndoDeletionRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(Task task) taskMarkAsCompleted,
+    required TResult Function(Task task) taskDeleted,
+    required TResult Function() undoDeletionRequested,
+    required TResult Function() allTasksIncremented,
+    required TResult Function() subscriptionRequested,
+  }) {
+    return undoDeletionRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
+    TResult Function()? allTasksIncremented,
+    TResult Function()? subscriptionRequested,
+  }) {
+    return undoDeletionRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(Task task)? taskMarkAsCompleted,
+    TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
+    TResult Function()? allTasksIncremented,
+    TResult Function()? subscriptionRequested,
+    required TResult orElse(),
+  }) {
+    if (undoDeletionRequested != null) {
+      return undoDeletionRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
+    required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_UndoDeletionRequested value)
+        undoDeletionRequested,
+    required TResult Function(_AllTasksIncremented value) allTasksIncremented,
+    required TResult Function(_SubscriptionRequested value)
+        subscriptionRequested,
+  }) {
+    return undoDeletionRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
+    TResult Function(_AllTasksIncremented value)? allTasksIncremented,
+    TResult Function(_SubscriptionRequested value)? subscriptionRequested,
+  }) {
+    return undoDeletionRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
+    TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
+    TResult Function(_AllTasksIncremented value)? allTasksIncremented,
+    TResult Function(_SubscriptionRequested value)? subscriptionRequested,
+    required TResult orElse(),
+  }) {
+    if (undoDeletionRequested != null) {
+      return undoDeletionRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UndoDeletionRequested implements TaskListEvent {
+  const factory _UndoDeletionRequested() = _$_UndoDeletionRequested;
 }
 
 /// @nodoc
@@ -583,6 +743,7 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
     required TResult Function() started,
     required TResult Function(Task task) taskMarkAsCompleted,
     required TResult Function(Task task) taskDeleted,
+    required TResult Function() undoDeletionRequested,
     required TResult Function() allTasksIncremented,
     required TResult Function() subscriptionRequested,
   }) {
@@ -595,6 +756,7 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
   }) {
@@ -607,6 +769,7 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
     required TResult orElse(),
@@ -623,6 +786,8 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
     required TResult Function(_Started value) started,
     required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_UndoDeletionRequested value)
+        undoDeletionRequested,
     required TResult Function(_AllTasksIncremented value) allTasksIncremented,
     required TResult Function(_SubscriptionRequested value)
         subscriptionRequested,
@@ -636,6 +801,7 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
   }) {
@@ -648,6 +814,7 @@ class _$_AllTasksIncremented implements _AllTasksIncremented {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
     required TResult orElse(),
@@ -708,6 +875,7 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
     required TResult Function() started,
     required TResult Function(Task task) taskMarkAsCompleted,
     required TResult Function(Task task) taskDeleted,
+    required TResult Function() undoDeletionRequested,
     required TResult Function() allTasksIncremented,
     required TResult Function() subscriptionRequested,
   }) {
@@ -720,6 +888,7 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
   }) {
@@ -732,6 +901,7 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
     TResult Function()? started,
     TResult Function(Task task)? taskMarkAsCompleted,
     TResult Function(Task task)? taskDeleted,
+    TResult Function()? undoDeletionRequested,
     TResult Function()? allTasksIncremented,
     TResult Function()? subscriptionRequested,
     required TResult orElse(),
@@ -748,6 +918,8 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
     required TResult Function(_Started value) started,
     required TResult Function(_TaskMarkAsCompleted value) taskMarkAsCompleted,
     required TResult Function(_TaskDeleted value) taskDeleted,
+    required TResult Function(_UndoDeletionRequested value)
+        undoDeletionRequested,
     required TResult Function(_AllTasksIncremented value) allTasksIncremented,
     required TResult Function(_SubscriptionRequested value)
         subscriptionRequested,
@@ -761,6 +933,7 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
   }) {
@@ -773,6 +946,7 @@ class _$_SubscriptionRequested implements _SubscriptionRequested {
     TResult Function(_Started value)? started,
     TResult Function(_TaskMarkAsCompleted value)? taskMarkAsCompleted,
     TResult Function(_TaskDeleted value)? taskDeleted,
+    TResult Function(_UndoDeletionRequested value)? undoDeletionRequested,
     TResult Function(_AllTasksIncremented value)? allTasksIncremented,
     TResult Function(_SubscriptionRequested value)? subscriptionRequested,
     required TResult orElse(),
@@ -793,6 +967,7 @@ mixin _$TaskListState {
   TaskListStatus get status => throw _privateConstructorUsedError;
   List<Task> get tasks => throw _privateConstructorUsedError;
   List<Task> get completedTasks => throw _privateConstructorUsedError;
+  Task? get lastDeletedTask => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TaskListStateCopyWith<TaskListState> get copyWith =>
@@ -805,7 +980,12 @@ abstract class $TaskListStateCopyWith<$Res> {
           TaskListState value, $Res Function(TaskListState) then) =
       _$TaskListStateCopyWithImpl<$Res>;
   $Res call(
-      {TaskListStatus status, List<Task> tasks, List<Task> completedTasks});
+      {TaskListStatus status,
+      List<Task> tasks,
+      List<Task> completedTasks,
+      Task? lastDeletedTask});
+
+  $TaskCopyWith<$Res>? get lastDeletedTask;
 }
 
 /// @nodoc
@@ -822,6 +1002,7 @@ class _$TaskListStateCopyWithImpl<$Res>
     Object? status = freezed,
     Object? tasks = freezed,
     Object? completedTasks = freezed,
+    Object? lastDeletedTask = freezed,
   }) {
     return _then(_value.copyWith(
       status: status == freezed
@@ -836,7 +1017,22 @@ class _$TaskListStateCopyWithImpl<$Res>
           ? _value.completedTasks
           : completedTasks // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      lastDeletedTask: lastDeletedTask == freezed
+          ? _value.lastDeletedTask
+          : lastDeletedTask // ignore: cast_nullable_to_non_nullable
+              as Task?,
     ));
+  }
+
+  @override
+  $TaskCopyWith<$Res>? get lastDeletedTask {
+    if (_value.lastDeletedTask == null) {
+      return null;
+    }
+
+    return $TaskCopyWith<$Res>(_value.lastDeletedTask!, (value) {
+      return _then(_value.copyWith(lastDeletedTask: value));
+    });
   }
 }
 
@@ -848,7 +1044,13 @@ abstract class _$$_TaskListStateCopyWith<$Res>
       __$$_TaskListStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {TaskListStatus status, List<Task> tasks, List<Task> completedTasks});
+      {TaskListStatus status,
+      List<Task> tasks,
+      List<Task> completedTasks,
+      Task? lastDeletedTask});
+
+  @override
+  $TaskCopyWith<$Res>? get lastDeletedTask;
 }
 
 /// @nodoc
@@ -867,6 +1069,7 @@ class __$$_TaskListStateCopyWithImpl<$Res>
     Object? status = freezed,
     Object? tasks = freezed,
     Object? completedTasks = freezed,
+    Object? lastDeletedTask = freezed,
   }) {
     return _then(_$_TaskListState(
       status: status == freezed
@@ -881,6 +1084,10 @@ class __$$_TaskListStateCopyWithImpl<$Res>
           ? _value._completedTasks
           : completedTasks // ignore: cast_nullable_to_non_nullable
               as List<Task>,
+      lastDeletedTask: lastDeletedTask == freezed
+          ? _value.lastDeletedTask
+          : lastDeletedTask // ignore: cast_nullable_to_non_nullable
+              as Task?,
     ));
   }
 }
@@ -891,7 +1098,8 @@ class _$_TaskListState implements _TaskListState {
   const _$_TaskListState(
       {this.status = TaskListStatus.initial,
       final List<Task> tasks = const <Task>[],
-      final List<Task> completedTasks = const <Task>[]})
+      final List<Task> completedTasks = const <Task>[],
+      this.lastDeletedTask})
       : _tasks = tasks,
         _completedTasks = completedTasks;
 
@@ -915,27 +1123,12 @@ class _$_TaskListState implements _TaskListState {
   }
 
   @override
+  final Task? lastDeletedTask;
+
+  @override
   String toString() {
-    return 'TaskListState(status: $status, tasks: $tasks, completedTasks: $completedTasks)';
+    return 'TaskListState(status: $status, tasks: $tasks, completedTasks: $completedTasks, lastDeletedTask: $lastDeletedTask)';
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_TaskListState &&
-            const DeepCollectionEquality().equals(other.status, status) &&
-            const DeepCollectionEquality().equals(other._tasks, _tasks) &&
-            const DeepCollectionEquality()
-                .equals(other._completedTasks, _completedTasks));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(status),
-      const DeepCollectionEquality().hash(_tasks),
-      const DeepCollectionEquality().hash(_completedTasks));
 
   @JsonKey(ignore: true)
   @override
@@ -947,7 +1140,8 @@ abstract class _TaskListState implements TaskListState {
   const factory _TaskListState(
       {final TaskListStatus status,
       final List<Task> tasks,
-      final List<Task> completedTasks}) = _$_TaskListState;
+      final List<Task> completedTasks,
+      final Task? lastDeletedTask}) = _$_TaskListState;
 
   @override
   TaskListStatus get status => throw _privateConstructorUsedError;
@@ -955,6 +1149,8 @@ abstract class _TaskListState implements TaskListState {
   List<Task> get tasks => throw _privateConstructorUsedError;
   @override
   List<Task> get completedTasks => throw _privateConstructorUsedError;
+  @override
+  Task? get lastDeletedTask => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$$_TaskListStateCopyWith<_$_TaskListState> get copyWith =>

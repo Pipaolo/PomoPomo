@@ -14,36 +14,61 @@ class TaskListPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<TaskListBloc, TaskListState>(
-        builder: (context, state) {
-          return CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                centerTitle: true,
-                elevation: 0,
-                pinned: true,
-                title: Text(
-                  'Tasks',
-                  style: GoogleFonts.inter(
-                    fontWeight: FontWeight.bold,
+    return BlocListener<TaskListBloc, TaskListState>(
+      listenWhen: (curr, prev) => curr.lastDeletedTask != prev.lastDeletedTask,
+      listener: (context, state) {
+        if (state.lastDeletedTask == null) return;
+        final deletedTask = state.lastDeletedTask!;
+        final messenger = ScaffoldMessenger.of(context);
+
+        messenger
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text('Task ${deletedTask.title} has been deleted.'),
+              action: SnackBarAction(
+                label: 'Undo',
+                onPressed: () {
+                  messenger.hideCurrentSnackBar();
+                  context
+                      .read<TaskListBloc>()
+                      .add(const TaskListEvent.undoDeletionRequested());
+                },
+              ),
+            ),
+          );
+      },
+      child: Scaffold(
+        body: BlocBuilder<TaskListBloc, TaskListState>(
+          builder: (context, state) {
+            return CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  centerTitle: true,
+                  elevation: 0,
+                  pinned: true,
+                  title: Text(
+                    'Tasks',
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              if (state.tasks.isEmpty && state.completedTasks.isEmpty)
-                const SliverFillRemaining(
-                  child: TaskListEmpty(),
-                ),
-              if (state.tasks.isNotEmpty)
-                _InProgressTaskList(tasks: state.tasks),
-              if (state.completedTasks.isNotEmpty)
-                _CompletedTaskList(tasks: state.completedTasks)
-              // if (tasks.isEmpty)
-            ],
-          );
-        },
+                if (state.tasks.isEmpty && state.completedTasks.isEmpty)
+                  const SliverFillRemaining(
+                    child: TaskListEmpty(),
+                  ),
+                if (state.tasks.isNotEmpty)
+                  _InProgressTaskList(tasks: state.tasks),
+                if (state.completedTasks.isNotEmpty)
+                  _CompletedTaskList(tasks: state.completedTasks)
+                // if (tasks.isEmpty)
+              ],
+            );
+          },
+        ),
+        bottomNavigationBar: const TaskListCreateTaskButton(),
       ),
-      bottomNavigationBar: const TaskListCreateTaskButton(),
     );
   }
 
