@@ -1,4 +1,9 @@
 include: package:very_good_analysis/analysis_options.3.0.0.yaml
+analyzer:
+  exclude:
+    - "**.gr.dart"
+    - "**.g.dart"
+    # - "**.freezed.dart"
 linter:
   rules:
     public_member_api_docs: false

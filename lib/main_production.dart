@@ -5,17 +5,37 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
-import 'package:pomo_pomo/app/app.dart';
+import 'package:flutter/foundation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:local_storage_pomodoro_config_api/local_storage_pomodoro_config_api.dart';
+import 'package:local_storage_task_api/local_storage_task_api.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pomo_pomo/bootstrap.dart';
-import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final theme = await PomoPomoTheme.build();
+  Directory? dir;
+  if (!kIsWeb) {
+    dir = await getApplicationSupportDirectory();
+  }
+
+  await Hive.initFlutter();
+  Hive.registerAdapter(PomodoroConfigTypeAdapter());
+
+  final storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb ? HydratedStorage.webStorageDirectory : dir!,
+  );
+
+  final localTaskApi = LocalStorageTaskApi();
+  await localTaskApi.init(dir?.path);
+
   await bootstrap(
-    () => App(
-      theme: theme,
-    ),
+    taskApi: localTaskApi,
+    configApi: LocalStoragePomodoroConfigApi(),
+    hydratedStorage: storage,
   );
 }

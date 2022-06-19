@@ -10,14 +10,24 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pomo_pomo/app/app.dart';
 import 'package:pomo_pomo/splash/view/splash_page.dart';
 
-void main() {
+import '../../helpers/storage.dart';
+
+Future<void> main() async {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('App', () {
     testWidgets('renders SplashPage', (tester) async {
-      await tester.pumpWidget(
-        App(
-          theme: ThemeData(),
-        ),
+      await mockHydratedStorage(
+        () async {
+          await tester.pumpWidget(
+            App(
+              theme: ThemeData(),
+            ),
+          );
+          await tester.pumpAndSettle();
+        },
       );
+
       expect(find.byType(SplashPage), findsOneWidget);
     });
   });

@@ -10,6 +10,14 @@ A Very Good Project created by Very Good CLI.
 
 ---
 
+## Features to implement ⚙️
+- [X] Generic Todo list API
+- [X] Task List API
+    - [X] Create Task
+    - [X] Edit Task
+    - [X] View All Tasks
+- [X] Generic Pomodoro config API
+
 ## Getting Started 🚀
 
 This project contains 3 flavors:

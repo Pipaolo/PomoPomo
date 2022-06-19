@@ -10,7 +10,12 @@ import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:pomo_pomo/app/view/app.dart';
+import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
+import 'package:pomodoro_config_api/pomodoro_config_api.dart';
+import 'package:pomodoro_config_repository/pomodoro_config_repository.dart';
+import 'package:task_api/task_api.dart';
+import 'package:task_repository/task_repository.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -26,21 +31,34 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
-  final storage = await HydratedStorage.build(
-    storageDirectory: await getTemporaryDirectory(),
-  );
-
+Future<void> bootstrap({
+  required TaskApi taskApi,
+  required PomodoroConfigApi configApi,
+  required HydratedStorage hydratedStorage,
+}) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
+  final taskRepository = TaskRepository(taskApi: taskApi);
+  final pomodoroConfigRepository = PomodoroConfigRepository(
+    configApi: configApi,
+  );
+
+  final theme = await PomoPomoTheme.build();
+
   await runZonedGuarded(
     () async {
       await HydratedBlocOverrides.runZoned(
-        () async => runApp(await builder()),
+        () async => runApp(
+          AppView(
+            theme: theme,
+            taskRepository: taskRepository,
+            pomodoroConfigRepository: pomodoroConfigRepository,
+          ),
+        ),
         blocObserver: AppBlocObserver(),
-        storage: storage,
+        storage: hydratedStorage,
       );
     },
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
