@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pomo_pomo/pomodoro_timer/bloc/pomodoro_timer_bloc.dart';
 import 'package:pomo_pomo/pomodoro_timer/widgets/widgets.dart';
-import 'package:pomo_pomo/widgets/showcase/custom_showcase.dart';
+import 'package:pomo_pomo/widgets/showcase/showcase.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 
 class PomodoroTimerClock extends StatelessWidget {
@@ -17,9 +17,9 @@ class PomodoroTimerClock extends StatelessWidget {
 
   String padStr(num i) => i.toString().padLeft(2, '0');
 
-  final GlobalKey actionsShowCaseKey;
-  final GlobalKey progressShowCaseKey;
-  final GlobalKey modeShowCaseKey;
+  final GlobalKey? actionsShowCaseKey;
+  final GlobalKey? progressShowCaseKey;
+  final GlobalKey? modeShowCaseKey;
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +71,12 @@ class PomodoroTimerClock extends StatelessWidget {
                 center: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomShowCase(
+                    ShowcaseWidgetWrapper(
                       showCaseKey: modeShowCaseKey,
                       description: 'The current mode of the timer',
-                      child: const _Title(),
+                      child: _Title(),
                     ),
-                    CustomShowCase(
+                    ShowcaseWidgetWrapper(
                       showCaseKey: progressShowCaseKey,
                       description: 'The total amount of time left',
                       child: Text(
@@ -87,7 +87,7 @@ class PomodoroTimerClock extends StatelessWidget {
                         ),
                       ),
                     ),
-                    CustomShowCase(
+                    ShowcaseWidgetWrapper(
                       description: '''
 The actions available based on the current mode. 
 The available actions are: reset, and skip break.
@@ -107,10 +107,6 @@ The available actions are: reset, and skip break.
 }
 
 class _Title extends StatelessWidget {
-  const _Title({
-    super.key,
-  });
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PomodoroTimerBloc, PomodoroTimerState>(

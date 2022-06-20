@@ -15,6 +15,10 @@ class TutorialCubit extends HydratedCubit<TutorialState> {
     emit(const TutorialState.initial());
   }
 
+  void stepUpdated(int activeId) {
+    emit(TutorialState.ongoing(activeId));
+  }
+
   void finished() {
     emit(const TutorialState.finished());
   }
@@ -30,6 +34,7 @@ class TutorialCubit extends HydratedCubit<TutorialState> {
   @override
   Map<String, dynamic>? toJson(TutorialState state) {
     return state.map(
+      ongoing: (_) => <String, dynamic>{'isFinished': false},
       initial: (_) => <String, dynamic>{
         'isFinished': false,
       },
