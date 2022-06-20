@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pomo_pomo/task_list/models/models.dart';
+import 'package:pomo_pomo/widgets/showcase/showcase.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 import 'package:task_api/task_api.dart';
 
@@ -12,8 +14,10 @@ class TaskListItem extends StatelessWidget {
     required this.onPressed,
     required this.onCompletePressed,
     required this.onDeletePressed,
+    this.tutorialItem,
   });
 
+  final TaskListViewTutorialItem? tutorialItem;
   final Task task;
   final VoidCallback onPressed;
   final VoidCallback onCompletePressed;
@@ -21,48 +25,69 @@ class TaskListItem extends StatelessWidget {
 
   static final _borderRadius = BorderRadius.circular(12);
 
+  static const _tutorialTaskListItemDescription = '''
+This contains all information about a task. 📋
+
+- You can swipe left to right to complete the task.
+- You can swipe right to left to delete the task.
+''';
+
+  static const _tutorialTaskListProgress = '''
+Track your pomodoro progress. 📊
+
+Keep being productive! 💪
+  ''';
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: _borderRadius,
-      ),
-      child: Slidable(
-        startActionPane: _buildCompleteAction(context),
-        endActionPane: _buildRemoveAction(context),
-        child: InkWell(
-          onTap: onPressed,
+    return ShowCaseWidgetWrapper(
+      showCaseKey: tutorialItem?.parentKey,
+      description: _tutorialTaskListItemDescription,
+      child: Card(
+        shape: RoundedRectangleBorder(
           borderRadius: _borderRadius,
-          child: Padding(
-            padding: const EdgeInsets.all(PomoPomoSpacings.spacing4),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  task.title,
-                  style: GoogleFonts.inter(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
+        ),
+        child: Slidable(
+          startActionPane: _buildCompleteAction(context),
+          endActionPane: _buildRemoveAction(context),
+          child: InkWell(
+            onTap: onPressed,
+            borderRadius: _borderRadius,
+            child: Padding(
+              padding: const EdgeInsets.all(PomoPomoSpacings.spacing4),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    task.title,
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
                   ),
-                ),
-                const Divider(
-                  height: PomoPomoSpacings.spacing4 * 2,
-                ),
-                Text(
-                  task.content,
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
+                  const Divider(
+                    height: PomoPomoSpacings.spacing4 * 2,
                   ),
-                ),
-                PomoPomoSpacers.vSpacing4,
-                _PomodoroProgress(
-                  completedPomodoros: task.pomodoroCount,
-                  totalPomodoros: task.totalPomodoroCount,
-                  padding: const EdgeInsets.only(
-                    right: PomoPomoSpacings.spacing2,
+                  Text(
+                    task.content,
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                    ),
                   ),
-                ),
-              ],
+                  PomoPomoSpacers.vSpacing4,
+                  ShowCaseWidgetWrapper(
+                    showCaseKey: tutorialItem?.progressKey,
+                    description: _tutorialTaskListProgress,
+                    child: _PomodoroProgress(
+                      completedPomodoros: task.pomodoroCount,
+                      totalPomodoros: task.totalPomodoroCount,
+                      padding: const EdgeInsets.only(
+                        right: PomoPomoSpacings.spacing2,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
