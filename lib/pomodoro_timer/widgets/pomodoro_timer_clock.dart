@@ -4,12 +4,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:pomo_pomo/pomodoro_timer/bloc/pomodoro_timer_bloc.dart';
 import 'package:pomo_pomo/pomodoro_timer/widgets/widgets.dart';
+import 'package:pomo_pomo/widgets/showcase/custom_showcase.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 
 class PomodoroTimerClock extends StatelessWidget {
-  const PomodoroTimerClock({super.key});
+  const PomodoroTimerClock({
+    super.key,
+    required this.actionsShowCaseKey,
+    required this.progressShowCaseKey,
+    required this.modeShowCaseKey,
+  });
 
   String padStr(num i) => i.toString().padLeft(2, '0');
+
+  final GlobalKey actionsShowCaseKey;
+  final GlobalKey progressShowCaseKey;
+  final GlobalKey modeShowCaseKey;
 
   @override
   Widget build(BuildContext context) {
@@ -61,15 +71,30 @@ class PomodoroTimerClock extends StatelessWidget {
                 center: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const _Title(),
-                    Text(
-                      '${padStr(minutes)}:${padStr(seconds)}',
-                      style: GoogleFonts.inter(
-                        fontSize: 54,
-                        fontWeight: FontWeight.bold,
+                    CustomShowCase(
+                      showCaseKey: modeShowCaseKey,
+                      description: 'The current mode of the timer',
+                      child: const _Title(),
+                    ),
+                    CustomShowCase(
+                      showCaseKey: progressShowCaseKey,
+                      description: 'The total amount of time left',
+                      child: Text(
+                        '${padStr(minutes)}:${padStr(seconds)}',
+                        style: GoogleFonts.inter(
+                          fontSize: 54,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                    const PomodoroTimerActions(),
+                    CustomShowCase(
+                      description: '''
+The actions available based on the current mode. 
+The available actions are: reset, and skip break.
+''',
+                      showCaseKey: actionsShowCaseKey,
+                      child: const PomodoroTimerActions(),
+                    ),
                   ],
                 ),
               ),
@@ -82,7 +107,9 @@ class PomodoroTimerClock extends StatelessWidget {
 }
 
 class _Title extends StatelessWidget {
-  const _Title();
+  const _Title({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
