@@ -12,6 +12,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pomo_pomo/l10n/l10n.dart';
 import 'package:pomo_pomo/router/app_router.dart';
 import 'package:pomo_pomo/task_list/bloc/task_list_bloc.dart';
+import 'package:pomo_pomo/tutorial/tutorial.dart';
 import 'package:pomodoro_config_repository/pomodoro_config_repository.dart';
 import 'package:task_repository/task_repository.dart';
 
@@ -45,6 +46,7 @@ class AppView extends StatelessWidget {
               taskRepository: _taskRepository,
             ),
           ),
+          BlocProvider(create: (context) => TutorialCubit())
         ],
         child: App(
           theme: _theme,
