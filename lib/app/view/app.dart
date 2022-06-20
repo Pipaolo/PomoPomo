@@ -44,7 +44,7 @@ class AppView extends StatelessWidget {
           BlocProvider(
             create: (context) => TaskListBloc(
               taskRepository: _taskRepository,
-            ),
+            )..add(const TaskListEvent.subscriptionRequested()),
           ),
           BlocProvider(create: (context) => TutorialCubit())
         ],
