@@ -4,16 +4,70 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pomo_pomo/router/app_router.dart';
 import 'package:pomo_pomo/task_list/bloc/task_list_bloc.dart';
+import 'package:pomo_pomo/task_list/models/models.dart';
+import 'package:pomo_pomo/task_list/widgets/task_list_tutorial_list.dart';
 import 'package:pomo_pomo/task_list/widgets/widgets.dart';
+import 'package:pomo_pomo/tutorial/tutorial.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'package:task_api/task_api.dart';
-import 'package:task_repository/task_repository.dart';
 
-class TaskListPage extends StatelessWidget implements AutoRouteWrapper {
+class TaskListPage extends StatefulWidget implements AutoRouteWrapper {
   const TaskListPage({super.key});
 
   @override
+  State<TaskListPage> createState() => _TaskListPageState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => TutorialTaskListCubit(),
+        ),
+      ],
+      child: this,
+    );
+  }
+}
+
+class _TaskListPageState extends State<TaskListPage> {
+  BuildContext? _showCaseContext;
+
+  static final _inProgressTaskTutorial = TaskListViewTutorialItem();
+  static final _completedTaskTutorial = TaskListViewTutorialItem();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        if (_showCaseContext == null) return;
+        context.read<TutorialTaskListCubit>().state.when(
+              initial: () {
+                final keys = [
+                  ..._inProgressTaskTutorial.allKeys,
+                  _completedTaskTutorial.containerKey,
+                ];
+                ShowCaseWidget.of(_showCaseContext!)?.startShowCase(
+                  keys,
+                );
+              },
+              finished: () {},
+            );
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final isTutorialFinished = context.select(
+      (TutorialTaskListCubit b) => b.state.map(
+        initial: (_) => false,
+        finished: (_) => true,
+      ),
+    );
+
     return BlocListener<TaskListBloc, TaskListState>(
       listenWhen: (curr, prev) => curr.lastDeletedTask != prev.lastDeletedTask,
       listener: (context, state) {
@@ -38,49 +92,59 @@ class TaskListPage extends StatelessWidget implements AutoRouteWrapper {
             ),
           );
       },
-      child: Scaffold(
-        body: BlocBuilder<TaskListBloc, TaskListState>(
-          builder: (context, state) {
-            return CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  centerTitle: true,
-                  elevation: 0,
-                  pinned: true,
-                  title: Text(
-                    'Tasks',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.bold,
+      child: ShowCaseWidget(
+        onFinish: () async {
+          context.read<TutorialTaskListCubit>().finished();
+        },
+        builder: Builder(
+          builder: (context) {
+            _showCaseContext = context;
+            return Scaffold(
+              body: BlocBuilder<TaskListBloc, TaskListState>(
+                builder: (context, state) {
+                  final appBar = SliverAppBar(
+                    centerTitle: true,
+                    elevation: 0,
+                    pinned: true,
+                    title: Text(
+                      'Tasks',
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ),
-                if (state.tasks.isEmpty && state.completedTasks.isEmpty)
-                  const SliverFillRemaining(
-                    child: TaskListEmpty(),
-                  ),
-                if (state.tasks.isNotEmpty)
-                  _InProgressTaskList(tasks: state.tasks),
-                if (state.completedTasks.isNotEmpty)
-                  _CompletedTaskList(tasks: state.completedTasks)
-                // if (tasks.isEmpty)
-              ],
+                  );
+                  if (!isTutorialFinished) {
+                    return CustomScrollView(
+                      slivers: [
+                        appBar,
+                        TaskListTutorialList(
+                          inProgressTutorialItem: _inProgressTaskTutorial,
+                          completedTutorialItem: _completedTaskTutorial,
+                        ),
+                      ],
+                    );
+                  }
+                  return CustomScrollView(
+                    slivers: [
+                      appBar,
+                      if (state.tasks.isEmpty && state.completedTasks.isEmpty)
+                        const SliverFillRemaining(
+                          child: TaskListEmpty(),
+                        ),
+                      if (state.tasks.isNotEmpty)
+                        _InProgressTaskList(tasks: state.tasks),
+                      if (state.completedTasks.isNotEmpty)
+                        _CompletedTaskList(tasks: state.completedTasks)
+                      // if (tasks.isEmpty)
+                    ],
+                  );
+                },
+              ),
+              bottomNavigationBar: const TaskListCreateTaskButton(),
             );
           },
         ),
-        bottomNavigationBar: const TaskListCreateTaskButton(),
       ),
-    );
-  }
-
-  @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TaskListBloc(
-        taskRepository: context.read<TaskRepository>(),
-      )..add(
-          const TaskListEvent.subscriptionRequested(),
-        ),
-      child: this,
     );
   }
 }
@@ -90,6 +154,7 @@ class _InProgressTaskList extends StatelessWidget {
     required this.tasks,
   });
   final List<Task> tasks;
+
   @override
   Widget build(BuildContext context) {
     return SliverPadding(

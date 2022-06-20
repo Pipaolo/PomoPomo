@@ -46,7 +46,8 @@ class _$AppRouter extends RootStackRouter {
     },
     PomodoroTimerRoute.name: (routeData) {
       return MaterialPageX<PomodoroTimerPage>(
-          routeData: routeData, child: const PomodoroTimerPage());
+          routeData: routeData,
+          child: WrappedRoute(child: const PomodoroTimerPage()));
     },
     PomodoroTimerSettingsRoute.name: (routeData) {
       return MaterialPageX<PomodoroTimerSettingsPage>(

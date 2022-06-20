@@ -1,6 +1,6 @@
 name: pomo_pomo
 description: A Very Good Project created by Very Good CLI.
-version: 1.1.0
+version: 1.1.1
 publish_to: none
 
 environment:
@@ -43,6 +43,7 @@ dependencies:
   pomodoro_config_repository:
     path: "./packages/pomodoro_config_repository"
   reactive_forms: ^13.0.0
+  showcaseview: ^1.1.5
   simple_animations: ^4.1.0
 
   task_api:
@@ -62,6 +63,7 @@ dev_dependencies:
   freezed: ^2.0.3+1
   json_serializable: ^6.2.0
   mocktail: ^0.3.0
+  msix: ^3.6.2
   very_good_analysis: ^3.0.0
 
 flutter:
@@ -78,3 +80,12 @@ flutter_icons:
   ios: true
   remove_alpha_ios: true
   image_path: "assets/images/launcher_icon.png"
+
+msix_config:
+  display_name: Pomo Pomo - A Pomodoro Timer
+  publisher_display_name: Paolo Matthew G. Tolentino
+  identity_name: com.solstella.pomopomo
+  msix_version: 1.0.0.0
+  logo_path: "./assets/images/logo.png"
+  certificate_path: "pomo_pomo_windows_certificate.pfx"
+  certificate_password: pomo_pomo_rocks!
