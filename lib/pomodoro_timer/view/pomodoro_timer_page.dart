@@ -1,10 +1,10 @@
 import 'dart:developer';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:pomo_pomo/pomodoro_timer/pomodoro_timer.dart';
 import 'package:pomo_pomo/task_list/bloc/task_list_bloc.dart';
 import 'package:pomo_pomo/tutorial/tutorial.dart';
@@ -62,6 +62,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     return MultiBlocListener(
       listeners: [
         BlocListener<PomodoroTimerBloc, PomodoroTimerState>(
+          listenWhen: (prev, curr) => prev.status != curr.status,
           listener: (context, state) {
             if (state.status == PomodoroTimerStatus.finished) {
               _playFinishedSound();
@@ -128,12 +129,11 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
 
   Future<void> _playFinishedSound() async {
     try {
-      final player = AudioPlayer(
-        audioPipeline: AudioPipeline(),
-      );
+      final newPlayer = AudioPlayer();
 
-      await player.setAsset('assets/audio/bell-ding.wav');
-      await player.play();
+      await newPlayer.play(
+        AssetSource('audio/bell-ding.wav'),
+      );
     } catch (e) {
       log('Error playing sound: $e');
     }
