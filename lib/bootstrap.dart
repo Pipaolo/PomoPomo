@@ -8,6 +8,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:pomo_pomo/app/view/app.dart';
@@ -46,6 +47,23 @@ Future<void> bootstrap({
   );
 
   final theme = await PomoPomoTheme.build();
+  await AudioPlayer.global.changeLogLevel(LogLevel.info);
+  await AudioPlayer.global.setGlobalAudioContext(
+    AudioContext(
+      android: AudioContextAndroid(
+        isSpeakerphoneOn: true,
+        stayAwake: false,
+        contentType: AndroidContentType.music,
+        usageType: AndroidUsageType.alarm,
+        audioFocus: AndroidAudioFocus.gainTransientExclusive,
+      ),
+      iOS: AudioContextIOS(
+        category: AVAudioSessionCategory.playback,
+        defaultToSpeaker: true,
+        options: [AVAudioSessionOptions.interruptSpokenAudioAndMixWithOthers],
+      ),
+    ),
+  );
 
   await runZonedGuarded(
     () async {

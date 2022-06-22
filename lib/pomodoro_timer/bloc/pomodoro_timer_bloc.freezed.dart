@@ -19,6 +19,7 @@ mixin _$PomodoroTimerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() played,
+    required TResult Function() resumed,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
@@ -30,6 +31,7 @@ mixin _$PomodoroTimerEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -40,6 +42,7 @@ mixin _$PomodoroTimerEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -51,6 +54,7 @@ mixin _$PomodoroTimerEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Played value) played,
+    required TResult Function(_Resumed value) resumed,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
@@ -63,6 +67,7 @@ mixin _$PomodoroTimerEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -73,6 +78,7 @@ mixin _$PomodoroTimerEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -140,6 +146,7 @@ class _$_Played implements _Played {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() played,
+    required TResult Function() resumed,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
@@ -154,6 +161,7 @@ class _$_Played implements _Played {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -167,6 +175,7 @@ class _$_Played implements _Played {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -184,6 +193,7 @@ class _$_Played implements _Played {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Played value) played,
+    required TResult Function(_Resumed value) resumed,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
@@ -199,6 +209,7 @@ class _$_Played implements _Played {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -212,6 +223,7 @@ class _$_Played implements _Played {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -228,6 +240,143 @@ class _$_Played implements _Played {
 
 abstract class _Played implements PomodoroTimerEvent {
   const factory _Played() = _$_Played;
+}
+
+/// @nodoc
+abstract class _$$_ResumedCopyWith<$Res> {
+  factory _$$_ResumedCopyWith(
+          _$_Resumed value, $Res Function(_$_Resumed) then) =
+      __$$_ResumedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ResumedCopyWithImpl<$Res>
+    extends _$PomodoroTimerEventCopyWithImpl<$Res>
+    implements _$$_ResumedCopyWith<$Res> {
+  __$$_ResumedCopyWithImpl(_$_Resumed _value, $Res Function(_$_Resumed) _then)
+      : super(_value, (v) => _then(v as _$_Resumed));
+
+  @override
+  _$_Resumed get _value => super._value as _$_Resumed;
+}
+
+/// @nodoc
+
+class _$_Resumed implements _Resumed {
+  const _$_Resumed();
+
+  @override
+  String toString() {
+    return 'PomodoroTimerEvent.resumed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Resumed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() played,
+    required TResult Function() resumed,
+    required TResult Function() paused,
+    required TResult Function() breakSkipped,
+    required TResult Function() resetRequested,
+    required TResult Function(Duration selectedDuration)
+        selectedDurationUpdated,
+    required TResult Function(Duration elapsedDuration) elapsedDurationUpdated,
+  }) {
+    return resumed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? played,
+    TResult Function()? resumed,
+    TResult Function()? paused,
+    TResult Function()? breakSkipped,
+    TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
+    TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
+  }) {
+    return resumed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? played,
+    TResult Function()? resumed,
+    TResult Function()? paused,
+    TResult Function()? breakSkipped,
+    TResult Function()? resetRequested,
+    TResult Function(Duration selectedDuration)? selectedDurationUpdated,
+    TResult Function(Duration elapsedDuration)? elapsedDurationUpdated,
+    required TResult orElse(),
+  }) {
+    if (resumed != null) {
+      return resumed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Played value) played,
+    required TResult Function(_Resumed value) resumed,
+    required TResult Function(_Paused value) paused,
+    required TResult Function(_BreakSkipped value) breakSkipped,
+    required TResult Function(_ResetRequested value) resetRequested,
+    required TResult Function(_SelectedDurationUpdated value)
+        selectedDurationUpdated,
+    required TResult Function(_ElapsedDurationUpdated value)
+        elapsedDurationUpdated,
+  }) {
+    return resumed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_BreakSkipped value)? breakSkipped,
+    TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
+    TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
+  }) {
+    return resumed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_BreakSkipped value)? breakSkipped,
+    TResult Function(_ResetRequested value)? resetRequested,
+    TResult Function(_SelectedDurationUpdated value)? selectedDurationUpdated,
+    TResult Function(_ElapsedDurationUpdated value)? elapsedDurationUpdated,
+    required TResult orElse(),
+  }) {
+    if (resumed != null) {
+      return resumed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Resumed implements PomodoroTimerEvent {
+  const factory _Resumed() = _$_Resumed;
 }
 
 /// @nodoc
@@ -270,6 +419,7 @@ class _$_Paused implements _Paused {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() played,
+    required TResult Function() resumed,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
@@ -284,6 +434,7 @@ class _$_Paused implements _Paused {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -297,6 +448,7 @@ class _$_Paused implements _Paused {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -314,6 +466,7 @@ class _$_Paused implements _Paused {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Played value) played,
+    required TResult Function(_Resumed value) resumed,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
@@ -329,6 +482,7 @@ class _$_Paused implements _Paused {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -342,6 +496,7 @@ class _$_Paused implements _Paused {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -402,6 +557,7 @@ class _$_BreakSkipped implements _BreakSkipped {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() played,
+    required TResult Function() resumed,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
@@ -416,6 +572,7 @@ class _$_BreakSkipped implements _BreakSkipped {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -429,6 +586,7 @@ class _$_BreakSkipped implements _BreakSkipped {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -446,6 +604,7 @@ class _$_BreakSkipped implements _BreakSkipped {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Played value) played,
+    required TResult Function(_Resumed value) resumed,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
@@ -461,6 +620,7 @@ class _$_BreakSkipped implements _BreakSkipped {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -474,6 +634,7 @@ class _$_BreakSkipped implements _BreakSkipped {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -534,6 +695,7 @@ class _$_ResetRequested implements _ResetRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() played,
+    required TResult Function() resumed,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
@@ -548,6 +710,7 @@ class _$_ResetRequested implements _ResetRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -561,6 +724,7 @@ class _$_ResetRequested implements _ResetRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -578,6 +742,7 @@ class _$_ResetRequested implements _ResetRequested {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Played value) played,
+    required TResult Function(_Resumed value) resumed,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
@@ -593,6 +758,7 @@ class _$_ResetRequested implements _ResetRequested {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -606,6 +772,7 @@ class _$_ResetRequested implements _ResetRequested {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -694,6 +861,7 @@ class _$_SelectedDurationUpdated implements _SelectedDurationUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() played,
+    required TResult Function() resumed,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
@@ -708,6 +876,7 @@ class _$_SelectedDurationUpdated implements _SelectedDurationUpdated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -721,6 +890,7 @@ class _$_SelectedDurationUpdated implements _SelectedDurationUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -738,6 +908,7 @@ class _$_SelectedDurationUpdated implements _SelectedDurationUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Played value) played,
+    required TResult Function(_Resumed value) resumed,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
@@ -753,6 +924,7 @@ class _$_SelectedDurationUpdated implements _SelectedDurationUpdated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -766,6 +938,7 @@ class _$_SelectedDurationUpdated implements _SelectedDurationUpdated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -859,6 +1032,7 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() played,
+    required TResult Function() resumed,
     required TResult Function() paused,
     required TResult Function() breakSkipped,
     required TResult Function() resetRequested,
@@ -873,6 +1047,7 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -886,6 +1061,7 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? played,
+    TResult Function()? resumed,
     TResult Function()? paused,
     TResult Function()? breakSkipped,
     TResult Function()? resetRequested,
@@ -903,6 +1079,7 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Played value) played,
+    required TResult Function(_Resumed value) resumed,
     required TResult Function(_Paused value) paused,
     required TResult Function(_BreakSkipped value) breakSkipped,
     required TResult Function(_ResetRequested value) resetRequested,
@@ -918,6 +1095,7 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
@@ -931,6 +1109,7 @@ class _$_ElapsedDurationUpdated implements _ElapsedDurationUpdated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Played value)? played,
+    TResult Function(_Resumed value)? resumed,
     TResult Function(_Paused value)? paused,
     TResult Function(_BreakSkipped value)? breakSkipped,
     TResult Function(_ResetRequested value)? resetRequested,
