@@ -6,9 +6,11 @@ import 'package:pomo_pomo/pomodoro_timer_settings/view/pomodoro_timer_settings_f
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 
 class PomodoroTimerSettingsPage extends StatelessWidget {
-  const PomodoroTimerSettingsPage({
+  PomodoroTimerSettingsPage({
     super.key,
   });
+
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +41,14 @@ class PomodoroTimerSettingsPage extends StatelessWidget {
             case PomodoroTimerSettingsStatus.failure:
               break;
           }
-          return const Padding(
-            padding: EdgeInsets.all(
+          return ListView(
+            controller: _scrollController,
+            padding: const EdgeInsets.all(
               PomoPomoSpacings.spacing4,
             ),
-            child: PomodoroTimerSettingsForm(),
+            children: const [
+              PomodoroTimerSettingsForm(),
+            ],
           );
         },
       ),

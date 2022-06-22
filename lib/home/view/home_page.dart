@@ -53,8 +53,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: const [
-        PomodoroTimerRoute(),
+      routes: [
+        const PomodoroTimerRoute(),
         PomodoroTimerSettingsRoute(),
       ],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

@@ -44,6 +44,10 @@ class PomoPomoTheme {
           color: colorScheme.onSurfaceVariant,
         ),
       ),
+      scrollbarTheme: ScrollbarThemeData(
+        thumbColor: MaterialStateProperty.all(colorScheme.onSurfaceVariant),
+        trackColor: MaterialStateProperty.all(colorScheme.surfaceVariant),
+      ),
       textTheme: GoogleFonts.interTextTheme(
         customTheme.textTheme,
       ),
