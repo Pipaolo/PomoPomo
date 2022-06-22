@@ -50,8 +50,11 @@ class _$AppRouter extends RootStackRouter {
           child: WrappedRoute(child: const PomodoroTimerPage()));
     },
     PomodoroTimerSettingsRoute.name: (routeData) {
+      final args = routeData.argsAs<PomodoroTimerSettingsRouteArgs>(
+          orElse: () => const PomodoroTimerSettingsRouteArgs());
       return MaterialPageX<PomodoroTimerSettingsPage>(
-          routeData: routeData, child: const PomodoroTimerSettingsPage());
+          routeData: routeData,
+          child: PomodoroTimerSettingsPage(key: args.key));
     }
   };
 
@@ -140,9 +143,22 @@ class PomodoroTimerRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [PomodoroTimerSettingsPage]
-class PomodoroTimerSettingsRoute extends PageRouteInfo<void> {
-  const PomodoroTimerSettingsRoute()
-      : super(PomodoroTimerSettingsRoute.name, path: 'settings');
+class PomodoroTimerSettingsRoute
+    extends PageRouteInfo<PomodoroTimerSettingsRouteArgs> {
+  PomodoroTimerSettingsRoute({Key? key})
+      : super(PomodoroTimerSettingsRoute.name,
+            path: 'settings', args: PomodoroTimerSettingsRouteArgs(key: key));
 
   static const String name = 'PomodoroTimerSettingsRoute';
+}
+
+class PomodoroTimerSettingsRouteArgs {
+  const PomodoroTimerSettingsRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'PomodoroTimerSettingsRouteArgs{key: $key}';
+  }
 }

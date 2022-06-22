@@ -8,6 +8,7 @@ import 'package:pomo_pomo/task_list/models/models.dart';
 import 'package:pomo_pomo/task_list/widgets/task_list_tutorial_list.dart';
 import 'package:pomo_pomo/task_list/widgets/widgets.dart';
 import 'package:pomo_pomo/tutorial/tutorial.dart';
+import 'package:pomo_pomo/widgets/showcase/showcase.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:task_api/task_api.dart';
@@ -43,7 +44,8 @@ class _TaskListPageState extends State<TaskListPage> {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) {
         if (_showCaseContext == null) return;
-        context.read<TutorialTaskListCubit>().state.when(
+
+        context.read<TutorialTaskListCubit>().state.maybeWhen(
               initial: () {
                 final keys = [
                   ..._inProgressTaskTutorial.allKeys,
@@ -53,7 +55,7 @@ class _TaskListPageState extends State<TaskListPage> {
                   keys,
                 );
               },
-              finished: () {},
+              orElse: () {},
             );
       },
     );
@@ -64,6 +66,7 @@ class _TaskListPageState extends State<TaskListPage> {
     final isTutorialFinished = context.select(
       (TutorialTaskListCubit b) => b.state.map(
         initial: (_) => false,
+        ongoing: (_) => false,
         finished: (_) => true,
       ),
     );
@@ -92,58 +95,61 @@ class _TaskListPageState extends State<TaskListPage> {
             ),
           );
       },
-      child: ShowCaseWidget(
+      child: ShowcaseBuilderWrapper(
+        onStart: (id, _) {
+          if (id == null) return;
+          context.read<TutorialTaskListCubit>().stepUpdated(id);
+        },
         onFinish: () async {
           context.read<TutorialTaskListCubit>().finished();
         },
-        builder: Builder(
-          builder: (context) {
-            _showCaseContext = context;
-            return Scaffold(
-              body: BlocBuilder<TaskListBloc, TaskListState>(
-                builder: (context, state) {
-                  final appBar = SliverAppBar(
-                    centerTitle: true,
-                    elevation: 0,
-                    pinned: true,
-                    title: Text(
-                      'Tasks',
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.bold,
-                      ),
+        builder: (context) {
+          _showCaseContext = context;
+          return Scaffold(
+            body: BlocBuilder<TaskListBloc, TaskListState>(
+              builder: (context, state) {
+                final appBar = SliverAppBar(
+                  centerTitle: true,
+                  elevation: 0,
+                  pinned: true,
+                  title: Text(
+                    'Tasks',
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                  if (!isTutorialFinished) {
-                    return CustomScrollView(
-                      slivers: [
-                        appBar,
-                        TaskListTutorialList(
-                          inProgressTutorialItem: _inProgressTaskTutorial,
-                          completedTutorialItem: _completedTaskTutorial,
-                        ),
-                      ],
-                    );
-                  }
+                  ),
+                );
+
+                if (!isTutorialFinished) {
                   return CustomScrollView(
                     slivers: [
                       appBar,
-                      if (state.tasks.isEmpty && state.completedTasks.isEmpty)
-                        const SliverFillRemaining(
-                          child: TaskListEmpty(),
-                        ),
-                      if (state.tasks.isNotEmpty)
-                        _InProgressTaskList(tasks: state.tasks),
-                      if (state.completedTasks.isNotEmpty)
-                        _CompletedTaskList(tasks: state.completedTasks)
-                      // if (tasks.isEmpty)
+                      TaskListTutorialList(
+                        inProgressTutorialItem: _inProgressTaskTutorial,
+                        completedTutorialItem: _completedTaskTutorial,
+                      ),
                     ],
                   );
-                },
-              ),
-              bottomNavigationBar: const TaskListCreateTaskButton(),
-            );
-          },
-        ),
+                }
+                return CustomScrollView(
+                  slivers: [
+                    appBar,
+                    if (state.tasks.isEmpty && state.completedTasks.isEmpty)
+                      const SliverFillRemaining(
+                        child: TaskListEmpty(),
+                      ),
+                    if (state.tasks.isNotEmpty)
+                      _InProgressTaskList(tasks: state.tasks),
+                    if (state.completedTasks.isNotEmpty)
+                      _CompletedTaskList(tasks: state.completedTasks)
+                    // if (tasks.isEmpty)
+                  ],
+                );
+              },
+            ),
+            bottomNavigationBar: const TaskListCreateTaskButton(),
+          );
+        },
       ),
     );
   }

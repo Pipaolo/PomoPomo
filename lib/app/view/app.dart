@@ -14,6 +14,7 @@ import 'package:pomo_pomo/router/app_router.dart';
 import 'package:pomo_pomo/task_list/bloc/task_list_bloc.dart';
 import 'package:pomo_pomo/tutorial/tutorial.dart';
 import 'package:pomodoro_config_repository/pomodoro_config_repository.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:task_repository/task_repository.dart';
 
 class AppView extends StatelessWidget {
@@ -79,6 +80,20 @@ class App extends StatelessWidget {
         navigatorObservers: () => [AutoRouteObserver()],
       ),
       routeInformationParser: _router.defaultRouteParser(),
+      builder: (context, child) {
+        final colorScheme = Theme.of(context).colorScheme;
+        return ResponsiveWrapper.builder(
+          child,
+          maxWidth: 1280,
+          minWidth: 480,
+          debugLog: true,
+          background: Container(
+            width: double.maxFinite,
+            height: double.maxFinite,
+            color: colorScheme.background,
+          ),
+        );
+      },
     );
   }
 }

@@ -19,18 +19,21 @@ mixin _$TutorialState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(int activeId) ongoing,
     required TResult Function() finished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(int activeId)? ongoing,
     TResult Function()? finished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(int activeId)? ongoing,
     TResult Function()? finished,
     required TResult orElse(),
   }) =>
@@ -38,18 +41,21 @@ mixin _$TutorialState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Ongoing value) ongoing,
     required TResult Function(_Finished value) finished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ongoing value)? ongoing,
     TResult Function(_Finished value)? finished,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ongoing value)? ongoing,
     TResult Function(_Finished value)? finished,
     required TResult orElse(),
   }) =>
@@ -113,6 +119,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(int activeId) ongoing,
     required TResult Function() finished,
   }) {
     return initial();
@@ -122,6 +129,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(int activeId)? ongoing,
     TResult Function()? finished,
   }) {
     return initial?.call();
@@ -131,6 +139,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(int activeId)? ongoing,
     TResult Function()? finished,
     required TResult orElse(),
   }) {
@@ -144,6 +153,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Ongoing value) ongoing,
     required TResult Function(_Finished value) finished,
   }) {
     return initial(this);
@@ -153,6 +163,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ongoing value)? ongoing,
     TResult Function(_Finished value)? finished,
   }) {
     return initial?.call(this);
@@ -162,6 +173,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ongoing value)? ongoing,
     TResult Function(_Finished value)? finished,
     required TResult orElse(),
   }) {
@@ -174,6 +186,144 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements TutorialState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$$_OngoingCopyWith<$Res> {
+  factory _$$_OngoingCopyWith(
+          _$_Ongoing value, $Res Function(_$_Ongoing) then) =
+      __$$_OngoingCopyWithImpl<$Res>;
+  $Res call({int activeId});
+}
+
+/// @nodoc
+class __$$_OngoingCopyWithImpl<$Res> extends _$TutorialStateCopyWithImpl<$Res>
+    implements _$$_OngoingCopyWith<$Res> {
+  __$$_OngoingCopyWithImpl(_$_Ongoing _value, $Res Function(_$_Ongoing) _then)
+      : super(_value, (v) => _then(v as _$_Ongoing));
+
+  @override
+  _$_Ongoing get _value => super._value as _$_Ongoing;
+
+  @override
+  $Res call({
+    Object? activeId = freezed,
+  }) {
+    return _then(_$_Ongoing(
+      activeId == freezed
+          ? _value.activeId
+          : activeId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Ongoing implements _Ongoing {
+  const _$_Ongoing(this.activeId);
+
+  @override
+  final int activeId;
+
+  @override
+  String toString() {
+    return 'TutorialState.ongoing(activeId: $activeId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Ongoing &&
+            const DeepCollectionEquality().equals(other.activeId, activeId));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(activeId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_OngoingCopyWith<_$_Ongoing> get copyWith =>
+      __$$_OngoingCopyWithImpl<_$_Ongoing>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(int activeId) ongoing,
+    required TResult Function() finished,
+  }) {
+    return ongoing(activeId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(int activeId)? ongoing,
+    TResult Function()? finished,
+  }) {
+    return ongoing?.call(activeId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(int activeId)? ongoing,
+    TResult Function()? finished,
+    required TResult orElse(),
+  }) {
+    if (ongoing != null) {
+      return ongoing(activeId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Ongoing value) ongoing,
+    required TResult Function(_Finished value) finished,
+  }) {
+    return ongoing(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Ongoing value)? ongoing,
+    TResult Function(_Finished value)? finished,
+  }) {
+    return ongoing?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Ongoing value)? ongoing,
+    TResult Function(_Finished value)? finished,
+    required TResult orElse(),
+  }) {
+    if (ongoing != null) {
+      return ongoing(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Ongoing implements TutorialState {
+  const factory _Ongoing(final int activeId) = _$_Ongoing;
+
+  int get activeId => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$$_OngoingCopyWith<_$_Ongoing> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -217,6 +367,7 @@ class _$_Finished implements _Finished {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function(int activeId) ongoing,
     required TResult Function() finished,
   }) {
     return finished();
@@ -226,6 +377,7 @@ class _$_Finished implements _Finished {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(int activeId)? ongoing,
     TResult Function()? finished,
   }) {
     return finished?.call();
@@ -235,6 +387,7 @@ class _$_Finished implements _Finished {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function(int activeId)? ongoing,
     TResult Function()? finished,
     required TResult orElse(),
   }) {
@@ -248,6 +401,7 @@ class _$_Finished implements _Finished {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Ongoing value) ongoing,
     required TResult Function(_Finished value) finished,
   }) {
     return finished(this);
@@ -257,6 +411,7 @@ class _$_Finished implements _Finished {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ongoing value)? ongoing,
     TResult Function(_Finished value)? finished,
   }) {
     return finished?.call(this);
@@ -266,6 +421,7 @@ class _$_Finished implements _Finished {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Ongoing value)? ongoing,
     TResult Function(_Finished value)? finished,
     required TResult orElse(),
   }) {

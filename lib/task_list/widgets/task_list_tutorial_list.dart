@@ -34,7 +34,7 @@ class TaskListTutorialList extends StatelessWidget {
     return SliverFillRemaining(
       child: Column(
         children: [
-          ShowCaseWidgetWrapper(
+          ShowcaseWidgetWrapper(
             showCaseKey: inProgressTutorialItem.containerKey,
             description: 'This contains all in progress tasks',
             child: Column(
@@ -56,7 +56,7 @@ class TaskListTutorialList extends StatelessWidget {
             ),
           ),
           PomoPomoSpacers.vSpacing4,
-          ShowCaseWidgetWrapper(
+          ShowcaseWidgetWrapper(
             showCaseKey: completedTutorialItem.containerKey,
             description: 'This contains all completed tasks',
             child: Column(

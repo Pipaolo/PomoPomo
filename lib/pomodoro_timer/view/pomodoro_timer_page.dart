@@ -8,6 +8,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:pomo_pomo/pomodoro_timer/pomodoro_timer.dart';
 import 'package:pomo_pomo/task_list/bloc/task_list_bloc.dart';
 import 'package:pomo_pomo/tutorial/tutorial.dart';
+import 'package:pomo_pomo/widgets/showcase/showcase.dart';
 import 'package:pomo_pomo_theme/pomo_pomo_theme.dart';
 import 'package:showcaseview/showcaseview.dart';
 
@@ -35,7 +36,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_showCaseContext == null) return;
 
-      context.read<TutorialTimerCubit>().state.when(
+      context.read<TutorialTimerCubit>().state.maybeWhen(
             initial: () {
               ShowCaseWidget.of(_showCaseContext!)?.startShowCase(
                 [
@@ -46,7 +47,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
                 ],
               );
             },
-            finished: () {},
+            orElse: () {},
           );
     });
   }
@@ -80,49 +81,47 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
           },
         ),
       ],
-      child: ShowCaseWidget(
+      child: ShowcaseBuilderWrapper(
         onFinish: () {
           context.read<TutorialTimerCubit>().finished();
         },
-        builder: Builder(
-          builder: (context) {
-            _showCaseContext = context;
-            return Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                title: Text(
-                  'Timer',
-                  style: GoogleFonts.inter(
-                    fontWeight: FontWeight.bold,
-                  ),
+        builder: (context) {
+          _showCaseContext = context;
+          return Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              title: Text(
+                'Timer',
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              floatingActionButton: PomodoroTimerViewTaskButton(
-                showCaseKey: _taskListButton,
+            ),
+            floatingActionButton: PomodoroTimerViewTaskButton(
+              showCaseKey: _taskListButton,
+            ),
+            body: Container(
+              width: double.maxFinite,
+              padding: const EdgeInsets.all(
+                PomoPomoSpacings.spacing4,
               ),
-              body: Container(
-                width: double.maxFinite,
-                padding: const EdgeInsets.all(
-                  PomoPomoSpacings.spacing4,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: PomodoroTimerClock(
-                        actionsShowCaseKey: _timerActionButton,
-                        modeShowCaseKey: _timerMode,
-                        progressShowCaseKey: _timerProgress,
-                      ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: PomodoroTimerClock(
+                      actionsShowCaseKey: _timerActionButton,
+                      modeShowCaseKey: _timerMode,
+                      progressShowCaseKey: _timerProgress,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

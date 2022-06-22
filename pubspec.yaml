@@ -1,6 +1,6 @@
 name: pomo_pomo
 description: A Very Good Project created by Very Good CLI.
-version: 1.1.1
+version: 1.1.2
 publish_to: none
 
 environment:
@@ -43,6 +43,7 @@ dependencies:
   pomodoro_config_repository:
     path: "./packages/pomodoro_config_repository"
   reactive_forms: ^13.0.0
+  responsive_framework: ^0.2.0
   showcaseview: ^1.1.5
   simple_animations: ^4.1.0
 
