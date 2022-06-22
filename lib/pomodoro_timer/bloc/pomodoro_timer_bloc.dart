@@ -16,6 +16,7 @@ class PomodoroTimerBloc
   })  : _configRepository = configRepository,
         super(const PomodoroTimerState()) {
     on<_Played>(_onPlayed);
+    on<_Resumed>(_onResumed);
     on<_Paused>(_onPaused);
     on<_ResetRequested>(_onResetRequested);
     on<_SelectedDurationUpdated>(_onSelectedDurationUpdated);
@@ -41,16 +42,13 @@ class PomodoroTimerBloc
     add(_ElapsedDurationUpdated(currentElapsedDuration));
   }
 
+  void _startTimer() => _timer = Timer.periodic(_duration, _onTick);
+
   FutureOr<void> _onPlayed(
     _Played event,
     Emitter<PomodoroTimerState> emit,
   ) async {
-    _timer = Timer.periodic(
-      const Duration(
-        milliseconds: 1000,
-      ),
-      _onTick,
-    );
+    _startTimer();
     emit(
       state.copyWith(status: PomodoroTimerStatus.running),
     );
@@ -203,5 +201,12 @@ class PomodoroTimerBloc
         selectedDuration: event.selectedDuration,
       ),
     );
+  }
+
+  FutureOr<void> _onResumed(
+    _Resumed event,
+    Emitter<PomodoroTimerState> emit,
+  ) {
+    _startTimer();
   }
 }

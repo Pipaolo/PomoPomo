@@ -33,23 +33,33 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_showCaseContext == null) return;
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        if (_showCaseContext == null) return;
 
-      context.read<TutorialTimerCubit>().state.maybeWhen(
-            initial: () {
-              ShowCaseWidget.of(_showCaseContext!)?.startShowCase(
-                [
-                  _timerMode,
-                  _timerProgress,
-                  _timerActionButton,
-                  _taskListButton
-                ],
-              );
-            },
-            orElse: () {},
-          );
-    });
+        /// Check if the timer is running upon init.
+        /// if it is, proceed in resuming the timer.
+        final pomodoroTimerBloc = context.read<PomodoroTimerBloc>();
+        if (pomodoroTimerBloc.state.status == PomodoroTimerStatus.running) {
+          pomodoroTimerBloc.add(const PomodoroTimerEvent.resumed());
+        }
+
+        /// Handle Tutorial Showcase.
+        context.read<TutorialTimerCubit>().state.maybeWhen(
+              initial: () {
+                ShowCaseWidget.of(_showCaseContext!)?.startShowCase(
+                  [
+                    _timerMode,
+                    _timerProgress,
+                    _timerActionButton,
+                    _taskListButton
+                  ],
+                );
+              },
+              orElse: () {},
+            );
+      },
+    );
   }
 
   final _timerActionButton = GlobalKey();
