@@ -47,7 +47,7 @@ class PomodoroTimerBloc
   ) async {
     _timer = Timer.periodic(
       const Duration(
-        seconds: 1,
+        milliseconds: 1000,
       ),
       _onTick,
     );

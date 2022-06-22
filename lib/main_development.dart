@@ -18,20 +18,24 @@ import 'package:pomo_pomo/bootstrap.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   Directory? dir;
+
   if (!kIsWeb) {
-    dir = await getApplicationSupportDirectory();
+    dir = await getApplicationDocumentsDirectory();
+  } else {
+    dir = HydratedStorage.webStorageDirectory;
   }
 
   await Hive.initFlutter();
   Hive.registerAdapter(PomodoroConfigTypeAdapter());
 
   final storage = await HydratedStorage.build(
-    storageDirectory: kIsWeb ? HydratedStorage.webStorageDirectory : dir!,
+    storageDirectory: dir,
   );
 
   final localTaskApi = LocalStorageTaskApi();
-  await localTaskApi.init(dir?.path);
+  await localTaskApi.init(dir.path);
 
   await bootstrap(
     taskApi: localTaskApi,
